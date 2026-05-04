@@ -15,13 +15,13 @@ const team = [
     name: "Tanaz Molapour, Ph.D.",
     role: "Founder & CEO | Principal Researcher",
     photo: "/images/tanaz.webp",
-    bio: "Tanaz brings a rare combination of scientific depth and business intuition to every engagement. Trained in neuroscience at the Karolinska Institutet and Caltech, she understands how people think, feel, and make decisions. She founded ResearchMind to help organizations tap into that understanding, turning behavioral insight into strategies that drive growth, retention, and smarter products.",
+    bio: "Tanaz brings a rare combination of scientific depth and business intuition to every engagement. Trained in neuroscience at the Karolinska Institutet and Caltech, her background in computational modeling, neural networks, and machine learning gives her a foundational fluency in AI that most researchers simply don\u2019t have. She founded ResearchMind to help organizations tap into that dual expertise, turning behavioral insight and modern AI into strategies that drive growth, retention, and smarter products.",
   },
   {
     name: "Chris Berger, Ph.D.",
     role: "Co-Founder | Principal Researcher",
     photo: "/images/chris.webp",
-    bio: "Chris pairs a background in neuroscience (Karolinska Institutet, Caltech) with years of leading research and analytics at TikTok, Meta, and Microsoft. He co-founded ResearchMind to give organizations access to the kind of rigorous, clear-headed thinking that helps them understand their customers, make sense of complex data, and move forward with confidence.",
+    bio: "Chris pairs a background in neuroscience (Karolinska Institutet, Caltech) with years of leading research and analytics at TikTok, Meta, and Microsoft. His training in computational neuroscience gives him a native understanding of machine learning, neural networks, and the AI systems reshaping how teams work. He co-founded ResearchMind to bring that combined expertise to organizations looking to understand their customers, make sense of complex data, and move forward with confidence.",
   },
   {
     name: "Agnes Tongur, M.S.",
