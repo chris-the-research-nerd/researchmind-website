@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Services — ResearchMind",
+  title: "Services | ResearchMind",
   description:
     "Research, analytics, and strategy services from ResearchMind.",
 };
@@ -25,10 +25,12 @@ export default function ServicesPage() {
         </FadeIn>
         <div className="space-y-16">
           {services.map((service, i) => (
-            <FadeIn key={service.title} delay={i * 75}>
+            <FadeIn key={service.titleAccent} delay={i * 75}>
               <div className="border-t border-border pt-8 max-w-[720px]">
                 <h2 className="font-heading text-2xl font-semibold mb-4">
-                  {service.title}
+                  {service.titleBefore}
+                  <span className="text-accent">{service.titleAccent}</span>
+                  {service.titleAfter}
                 </h2>
                 <p className="text-secondary leading-[1.65]">
                   {service.description}

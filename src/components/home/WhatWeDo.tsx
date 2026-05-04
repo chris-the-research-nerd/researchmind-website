@@ -13,11 +13,16 @@ export function WhatWeDo() {
           </h2>
         </FadeIn>
         <div className="space-y-6">
-          {whatWeDo.paragraphs.map((p, i) => (
-            <FadeIn key={i} delay={i * 100}>
-              <p className="text-secondary text-lg leading-[1.65]">{p}</p>
-            </FadeIn>
-          ))}
+          <FadeIn delay={100}>
+            <p className="text-foreground text-xl md:text-[1.375rem] leading-[1.6]">
+              {whatWeDo.paragraphs[0]}
+            </p>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <p className="text-secondary text-lg leading-[1.65]">
+              {whatWeDo.paragraphs[1]}
+            </p>
+          </FadeIn>
         </div>
       </Container>
     </Section>

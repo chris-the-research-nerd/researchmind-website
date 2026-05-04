@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -17,11 +18,15 @@ export function Header() {
   return (
     <header className="border-b border-border">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8 flex items-center justify-between h-16 md:h-20">
-        <Link
-          href="/"
-          className="font-heading text-xl font-semibold tracking-tight"
-        >
-          ResearchMind
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/logo.webp"
+            alt="ResearchMind"
+            width={180}
+            height={40}
+            className="h-10 md:h-11 w-auto"
+            priority
+          />
         </Link>
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (

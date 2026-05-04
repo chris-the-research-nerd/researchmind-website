@@ -12,11 +12,12 @@ export function Button({
   children,
 }: ButtonProps) {
   const base =
-    "inline-block text-sm font-medium tracking-wide transition-colors duration-200";
+    "inline-block text-sm font-medium tracking-wide transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground";
   const variants = {
-    primary: "bg-foreground text-white px-8 py-3.5 hover:bg-[#333333]",
+    primary:
+      "bg-foreground text-white px-8 py-3.5 hover:bg-accent hover:-translate-y-px active:translate-y-0",
     secondary:
-      "border border-foreground text-foreground px-8 py-3.5 hover:bg-foreground hover:text-white",
+      "border border-foreground text-foreground px-8 py-3.5 hover:bg-foreground hover:text-white hover:-translate-y-px active:translate-y-0",
   };
 
   return (

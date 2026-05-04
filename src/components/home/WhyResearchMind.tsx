@@ -12,14 +12,17 @@ export function WhyResearchMind() {
             Why ResearchMind
           </h2>
         </FadeIn>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-16 md:gap-y-14">
           {whyResearchMind.map((item, i) => (
             <FadeIn key={item.title} delay={i * 100}>
               <div>
-                <h3 className="font-heading text-lg font-semibold mb-3">
+                <span className="text-sm text-secondary/40 tracking-[0.15em] block mb-4">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="font-heading text-lg font-medium mb-3 leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-secondary leading-[1.65]">
+                <p className="text-secondary text-base leading-[1.65]">
                   {item.description}
                 </p>
               </div>

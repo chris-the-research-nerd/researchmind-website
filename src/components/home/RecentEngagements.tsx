@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { recentEngagements } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
+import { LogoCarousel } from "@/components/ui/LogoCarousel";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export function RecentEngagements() {
@@ -9,27 +9,15 @@ export function RecentEngagements() {
     <Section>
       <Container>
         <FadeIn>
-          <p className="text-sm text-secondary uppercase tracking-widest mb-10 text-center">
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-12 text-center">
             {recentEngagements.heading}
-          </p>
+          </h2>
         </FadeIn>
         <FadeIn delay={100}>
-          <div className="flex items-center justify-center gap-12 md:gap-20 mb-10">
-            {recentEngagements.logos.map((logo) => (
-              <div key={logo.name} className="grayscale opacity-60">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  width={120}
-                  height={40}
-                  className="h-8 w-auto object-contain"
-                />
-              </div>
-            ))}
-          </div>
+          <LogoCarousel logos={recentEngagements.logos} />
         </FadeIn>
         <FadeIn delay={200}>
-          <p className="text-center text-secondary text-sm italic max-w-[600px] mx-auto">
+          <p className="text-center text-secondary/80 text-sm tracking-wide max-w-[600px] mx-auto leading-relaxed mt-10">
             {recentEngagements.footnote}
           </p>
         </FadeIn>

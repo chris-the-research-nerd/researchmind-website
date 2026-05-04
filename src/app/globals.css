@@ -5,8 +5,27 @@
   --color-secondary: #666666;
   --color-muted: #f7f7f7;
   --color-border: #e5e5e5;
+  --color-accent: #B33A3A;
   --font-sans: var(--font-inter);
   --font-heading: var(--font-fraunces);
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-foreground);
+  color: #ffffff;
 }
 
 body {

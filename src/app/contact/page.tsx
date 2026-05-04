@@ -5,7 +5,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export const metadata: Metadata = {
-  title: "Contact — ResearchMind",
+  title: "Contact | ResearchMind",
   description: "Get in touch with ResearchMind.",
 };
 

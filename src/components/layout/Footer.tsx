@@ -1,24 +1,28 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Footer() {
   return (
     <footer className="border-t border-border py-12 md:py-16">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <Link
-          href="/"
-          className="font-heading text-lg font-semibold tracking-tight"
-        >
-          ResearchMind
+        <Link href="/">
+          <Image
+            src="/logo.webp"
+            alt="ResearchMind"
+            width={140}
+            height={32}
+            className="h-9 w-auto"
+          />
         </Link>
         <div className="flex items-center gap-6 text-sm text-secondary">
           <a
-            href="mailto:hello@researchmind.co"
+            href="mailto:info@researchmindconsulting.com"
             className="hover:text-foreground transition-colors duration-200"
           >
-            hello@researchmind.co
+            info@researchmindconsulting.com
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/research-mind-consulting/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-foreground transition-colors duration-200"

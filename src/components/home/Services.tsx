@@ -30,10 +30,12 @@ export function Services() {
         </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
-            <FadeIn key={service.title} delay={i * 75}>
+            <FadeIn key={service.titleAccent} delay={i * 75} className="flex">
               <Card
                 icon={iconMap[service.icon]}
-                title={service.title}
+                titleBefore={service.titleBefore}
+                titleAccent={service.titleAccent}
+                titleAfter={service.titleAfter}
                 description={service.description}
               />
             </FadeIn>
