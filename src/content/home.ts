@@ -21,6 +21,7 @@ export const whatWeDo = {
 
 export const services = [
   {
+    id: "qualitative-research",
     titleBefore: "",
     titleAccent: "Qualitative",
     titleAfter: " Research",
@@ -29,6 +30,7 @@ export const services = [
     icon: "MessageCircle" as const,
   },
   {
+    id: "quantitative-research",
     titleBefore: "",
     titleAccent: "Quantitative",
     titleAfter: " Research",
@@ -37,6 +39,7 @@ export const services = [
     icon: "BarChart3" as const,
   },
   {
+    id: "advanced-analytics",
     titleBefore: "Advanced ",
     titleAccent: "Analytics",
     titleAfter: "",
@@ -45,6 +48,7 @@ export const services = [
     icon: "TrendingUp" as const,
   },
   {
+    id: "market-brand-strategy",
     titleBefore: "Market & Brand ",
     titleAccent: "Strategy",
     titleAfter: "",
@@ -53,6 +57,7 @@ export const services = [
     icon: "Target" as const,
   },
   {
+    id: "ai-workflow-enablement",
     titleBefore: "",
     titleAccent: "AI",
     titleAfter: " Workflow Enablement",
@@ -92,7 +97,7 @@ export const recentEngagements = {
     { name: "Red Bull", src: "/logos/redbull.png" },
   ],
   footnote:
-    "Our founders bring experience from Meta, TikTok, Microsoft, and Caltech, with PhDs in neuroscience and psychology.",
+    "Our founders bring experience from Meta, TikTok, Microsoft, and Caltech, with PhDs in neuroscience and psychology. We\u2019ve helped teams across the US, EU, and UK grow, retain customers, and sharpen their strategy. Get in touch to see how we can help you.",
 };
 
 export const finalCta = {

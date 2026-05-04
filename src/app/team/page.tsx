@@ -49,14 +49,14 @@ export default function TeamPage() {
           {team.map((member, i) => (
             <FadeIn key={member.name} delay={i * 100}>
               <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-                <div className="w-full md:w-48 shrink-0">
-                  <div className="w-full aspect-square overflow-hidden bg-muted">
+                <div className="w-40 md:w-48 shrink-0">
+                  <div className="w-full aspect-square overflow-hidden rounded-full bg-muted">
                     <Image
                       src={member.photo}
                       alt={member.name}
                       width={400}
                       height={400}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-top grayscale"
                     />
                   </div>
                 </div>

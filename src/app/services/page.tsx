@@ -26,7 +26,7 @@ export default function ServicesPage() {
         <div className="space-y-16">
           {services.map((service, i) => (
             <FadeIn key={service.titleAccent} delay={i * 75}>
-              <div className="border-t border-border pt-8 max-w-[720px]">
+              <div id={service.id} className="border-t border-border pt-8 max-w-[720px] scroll-mt-24">
                 <h2 className="font-heading text-2xl font-semibold mb-4">
                   {service.titleBefore}
                   <span className="text-accent">{service.titleAccent}</span>

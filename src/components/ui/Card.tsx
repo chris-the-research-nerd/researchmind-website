@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 
 type CardProps = {
   icon: ReactNode;
@@ -6,6 +7,7 @@ type CardProps = {
   titleAccent: string;
   titleAfter: string;
   description: string;
+  href?: string;
 };
 
 export function Card({
@@ -14,9 +16,10 @@ export function Card({
   titleAccent,
   titleAfter,
   description,
+  href,
 }: CardProps) {
-  return (
-    <div className="h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 transition-all duration-300">
+  const content = (
+    <>
       <div className="flex items-center gap-3 mb-4">
         <div className="text-foreground/80 shrink-0">{icon}</div>
         <h3 className="font-heading text-lg font-semibold leading-snug">
@@ -28,6 +31,18 @@ export function Card({
       <p className="text-secondary leading-[1.65] text-base">
         {description}
       </p>
-    </div>
+    </>
   );
+
+  const className = "h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 transition-all duration-300 block";
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
 }
