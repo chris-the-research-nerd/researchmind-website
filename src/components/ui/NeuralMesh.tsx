@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 type Node = {
   x: number;
@@ -9,58 +9,78 @@ type Node = {
   vy: number;
 };
 
-const NODE_COUNT = 32;
-const CONNECTION_DISTANCE = 140;
-const SPEED = 0.15;
+const NODE_COUNT = 36;
+const CONNECTION_DISTANCE = 150;
+const SPEED = 0.18;
 
 export function NeuralMesh() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const nodesRef = useRef<Node[]>([]);
   const animRef = useRef<number>(0);
+  const initializedRef = useRef(false);
+
+  const initNodes = useCallback((width: number, height: number) => {
+    nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * SPEED,
+      vy: (Math.random() - 0.5) * SPEED,
+    }));
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const resize = () => {
-      const rect = canvas.parentElement?.getBoundingClientRect();
-      if (!rect) return;
-      canvas.width = rect.width;
-      canvas.height = rect.height;
+      const width = parent.offsetWidth;
+      const height = parent.offsetHeight;
+      if (width === 0 || height === 0) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.scale(dpr, dpr);
+
+      if (!initializedRef.current) {
+        initNodes(width, height);
+        initializedRef.current = true;
+      }
     };
 
     resize();
 
-    // Initialize nodes
-    nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      vx: (Math.random() - 0.5) * SPEED,
-      vy: (Math.random() - 0.5) * SPEED,
-    }));
-
     const draw = () => {
-      if (!ctx || !canvas) return;
+      const width = parent.offsetWidth;
+      const height = parent.offsetHeight;
+      if (width === 0 || height === 0) {
+        animRef.current = requestAnimationFrame(draw);
+        return;
+      }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const dpr = window.devicePixelRatio || 1;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, width, height);
 
       const nodes = nodesRef.current;
 
-      // Update positions
       for (const node of nodes) {
         node.x += node.vx;
         node.y += node.vy;
 
-        // Bounce off edges
-        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
 
-        // Keep in bounds
-        node.x = Math.max(0, Math.min(canvas.width, node.x));
-        node.y = Math.max(0, Math.min(canvas.height, node.y));
+        node.x = Math.max(0, Math.min(width, node.x));
+        node.y = Math.max(0, Math.min(height, node.y));
       }
 
       // Draw connections
@@ -71,9 +91,9 @@ export function NeuralMesh() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < CONNECTION_DISTANCE) {
-            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.12;
-            ctx.strokeStyle = `rgba(120, 120, 120, ${opacity})`;
-            ctx.lineWidth = 0.5;
+            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.18;
+            ctx.strokeStyle = `rgba(100, 100, 100, ${opacity})`;
+            ctx.lineWidth = 0.75;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -84,9 +104,9 @@ export function NeuralMesh() {
 
       // Draw nodes
       for (const node of nodes) {
-        ctx.fillStyle = "rgba(120, 120, 120, 0.15)";
+        ctx.fillStyle = "rgba(100, 100, 100, 0.22)";
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 1.5, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -101,12 +121,12 @@ export function NeuralMesh() {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener("resize", resize);
     };
-  }, []);
+  }, [initNodes]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none"
+      className="absolute inset-0 pointer-events-none"
       aria-hidden="true"
     />
   );
