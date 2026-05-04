@@ -20,15 +20,14 @@ export function Hero() {
           </p>
         </FadeIn>
         <FadeIn delay={200}>
-          <div className="mt-10 w-12 h-px bg-foreground/20" />
-          <div className="mt-6 space-y-1">
-            {hero.anchors.map((line) => (
-              <p
-                key={line}
-                className="text-sm text-secondary tracking-[0.04em]"
+          <div className="mt-10 flex flex-wrap gap-2.5">
+            {hero.anchors.map((label) => (
+              <span
+                key={label}
+                className="text-sm text-secondary tracking-[0.02em] px-4 py-1.5 rounded-full border border-border bg-white hover:border-secondary/50 hover:text-foreground transition-colors duration-200"
               >
-                {line}
-              </p>
+                {label}
+              </span>
             ))}
           </div>
         </FadeIn>

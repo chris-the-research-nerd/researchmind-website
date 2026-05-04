@@ -5,8 +5,11 @@ export const hero = {
   subline:
     "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence, without the big-agency price tag.",
   anchors: [
-    "Qualitative Research \u00b7 Quantitative Research \u00b7 Advanced Analytics",
-    "Market & Brand Strategy \u00b7 AI Workflow Enablement",
+    "Qualitative Research",
+    "Quantitative Research",
+    "Advanced Analytics",
+    "Market & Brand Strategy",
+    "AI Workflow Enablement",
   ],
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },
