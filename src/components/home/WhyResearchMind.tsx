@@ -16,9 +16,6 @@ export function WhyResearchMind() {
           {whyResearchMind.map((item, i) => (
             <FadeIn key={item.title} delay={i * 100}>
               <div>
-                <span className="text-sm text-secondary/60 tracking-[0.15em] block mb-4">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
                 <h3 className="font-heading text-lg font-semibold mb-3 leading-snug">
                   {item.title}
                 </h3>
