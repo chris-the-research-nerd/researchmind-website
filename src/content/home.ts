@@ -5,11 +5,11 @@ export const hero = {
   subline:
     "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence, without the big-agency price tag.",
   anchors: [
-    "Qualitative Research",
-    "Quantitative Research",
-    "Advanced Analytics",
-    "Market & Brand Strategy",
-    "AI Workflow Enablement",
+    { label: "Qualitative Research", href: "/services#qualitative-research" },
+    { label: "Quantitative Research", href: "/services#quantitative-research" },
+    { label: "Advanced Analytics", href: "/services#advanced-analytics" },
+    { label: "Market & Brand Strategy", href: "/services#market-brand-strategy" },
+    { label: "AI Workflow Enablement", href: "/services#ai-workflow-enablement" },
   ],
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },

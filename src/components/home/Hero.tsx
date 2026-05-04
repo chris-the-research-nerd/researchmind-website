@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { hero } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
@@ -21,13 +22,14 @@ export function Hero() {
         </FadeIn>
         <FadeIn delay={200}>
           <div className="mt-10 flex flex-wrap gap-2">
-            {hero.anchors.map((label) => (
-              <span
-                key={label}
-                className="text-sm text-secondary/80 tracking-[0.02em] px-3.5 py-1 rounded-full bg-muted"
+            {hero.anchors.map((anchor) => (
+              <Link
+                key={anchor.label}
+                href={anchor.href}
+                className="text-sm text-secondary/80 tracking-[0.02em] px-3.5 py-1 rounded-full bg-muted hover:bg-foreground/5 hover:text-secondary transition-colors duration-200"
               >
-                {label}
-              </span>
+                {anchor.label}
+              </Link>
             ))}
           </div>
         </FadeIn>
