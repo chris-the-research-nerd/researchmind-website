@@ -2,10 +2,12 @@ import { whatWeDo } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { NeuralMesh } from "@/components/ui/NeuralMesh";
 
 export function WhatWeDo() {
   return (
-    <Section className="border-t border-border">
+    <Section className="border-t border-border relative overflow-hidden">
+      <NeuralMesh />
       <Container narrow>
         <FadeIn>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-8">
