@@ -95,6 +95,7 @@ export const recentEngagements = {
   logos: [
     { name: "ParentPay", src: "/logos/parentpay.svg" },
     { name: "Red Bull", src: "/logos/redbull.png" },
+    { name: "Filiciti", src: "/logos/filiciti.png" },
   ],
   footnote:
     "Our founders bring experience from Meta, TikTok, Microsoft, and Caltech, with PhDs in neuroscience and psychology. We\u2019ve helped teams across the US, EU, and UK grow, retain customers, and sharpen their strategy. Get in touch to see how we can help you.",
