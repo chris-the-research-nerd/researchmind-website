@@ -36,7 +36,7 @@ export default function TeamPage() {
     <Section>
       <Container>
         <FadeIn>
-          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6">
             Our team
           </h1>
           <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-16">
@@ -67,7 +67,7 @@ export default function TeamPage() {
                   <p className="text-accent text-sm font-medium mt-1">
                     {member.role}
                   </p>
-                  <p className="text-secondary leading-[1.7] mt-4">
+                  <p className="text-secondary text-base leading-[1.65] mt-4">
                     {member.bio}
                   </p>
                 </div>

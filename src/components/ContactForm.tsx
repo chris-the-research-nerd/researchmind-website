@@ -31,8 +31,8 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="py-16 text-center">
-        <p className="text-lg font-medium mb-2">Thanks for reaching out.</p>
-        <p className="text-secondary">We&apos;ll be in touch soon.</p>
+        <p className="font-heading text-lg font-medium mb-2">Thanks for reaching out.</p>
+        <p className="text-secondary text-base leading-[1.65]">We&apos;ll be in touch soon.</p>
       </div>
     );
   }

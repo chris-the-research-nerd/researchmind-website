@@ -9,7 +9,7 @@ export function FinalCTA() {
     <Section className="border-t border-border">
       <Container narrow className="text-center">
         <FadeIn>
-          <h2 className="font-heading text-3xl md:text-[2.625rem] font-medium tracking-tight leading-[1.15] mb-6">
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-6">
             {finalCta.heading}
           </h2>
         </FadeIn>

@@ -17,7 +17,7 @@ export function RecentEngagements() {
           <LogoCarousel logos={recentEngagements.logos} />
         </FadeIn>
         <FadeIn delay={200}>
-          <p className="text-center text-secondary/80 text-sm tracking-wide max-w-[600px] mx-auto leading-relaxed mt-10">
+          <p className="text-center text-secondary text-sm tracking-[0.04em] max-w-[600px] mx-auto leading-relaxed mt-10">
             {recentEngagements.footnote}
           </p>
         </FadeIn>

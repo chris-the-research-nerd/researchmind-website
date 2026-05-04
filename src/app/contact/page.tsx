@@ -14,7 +14,7 @@ export default function ContactPage() {
     <Section>
       <Container narrow>
         <FadeIn>
-          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6">
             Get in touch
           </h1>
           <p className="text-secondary text-lg leading-relaxed mb-12">

@@ -15,7 +15,7 @@ export default function ServicesPage() {
     <Section>
       <Container>
         <FadeIn>
-          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6">
             Our services
           </h1>
           <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-16">
@@ -27,12 +27,12 @@ export default function ServicesPage() {
           {services.map((service, i) => (
             <FadeIn key={service.titleAccent} delay={i * 75}>
               <div id={service.id} className="border-t border-border pt-8 max-w-[720px] scroll-mt-24">
-                <h2 className="font-heading text-2xl font-semibold mb-4">
+                <h2 className="font-heading text-2xl font-semibold tracking-tight mb-4">
                   {service.titleBefore}
                   <span className="text-accent">{service.titleAccent}</span>
                   {service.titleAfter}
                 </h2>
-                <p className="text-secondary leading-[1.65]">
+                <p className="text-secondary text-base leading-[1.65]">
                   {service.description}
                 </p>
               </div>

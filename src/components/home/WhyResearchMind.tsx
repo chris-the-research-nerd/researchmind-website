@@ -19,7 +19,7 @@ export function WhyResearchMind() {
                 <span className="text-sm text-secondary/60 tracking-[0.15em] block mb-4">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-heading text-lg font-medium mb-3 leading-snug">
+                <h3 className="font-heading text-lg font-semibold mb-3 leading-snug">
                   {item.title}
                 </h3>
                 <p className="text-secondary text-base leading-[1.65]">
