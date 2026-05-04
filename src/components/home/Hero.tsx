@@ -20,11 +20,11 @@ export function Hero() {
           </p>
         </FadeIn>
         <FadeIn delay={200}>
-          <div className="mt-10 flex flex-wrap gap-2.5">
+          <div className="mt-10 flex flex-wrap gap-2">
             {hero.anchors.map((label) => (
               <span
                 key={label}
-                className="text-sm text-secondary tracking-[0.02em] px-4 py-1.5 rounded-full border border-border bg-white hover:border-secondary/50 hover:text-foreground transition-colors duration-200"
+                className="text-sm text-secondary/80 tracking-[0.02em] px-3.5 py-1 rounded-full bg-muted"
               >
                 {label}
               </span>
