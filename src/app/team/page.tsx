@@ -56,7 +56,7 @@ export default function TeamPage() {
                       alt={member.name}
                       width={400}
                       height={400}
-                      className="w-full h-full object-cover object-top grayscale"
+                      className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
                 </div>

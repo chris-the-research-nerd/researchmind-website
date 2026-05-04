@@ -3,7 +3,7 @@
 @theme inline {
   --color-foreground: #111111;
   --color-secondary: #666666;
-  --color-muted: #f7f7f7;
+  --color-muted: #f5f5f4;
   --color-border: #e5e5e5;
   --color-accent: #B33A3A;
   --font-sans: var(--font-inter);
@@ -24,7 +24,7 @@ html {
 }
 
 ::selection {
-  background: var(--color-foreground);
+  background: var(--color-accent);
   color: #ffffff;
 }
 

@@ -34,7 +34,7 @@ export function Card({
     </>
   );
 
-  const className = "h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 transition-all duration-300 block";
+  const className = "h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 hover:-translate-y-0.5 transition-all duration-300 block";
 
   if (href) {
     return (

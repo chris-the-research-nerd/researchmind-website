@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border py-12 md:py-16">
+    <footer className="border-t border-border py-10 md:py-12">
       <div className="mx-auto max-w-[1200px] px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <Link href="/">
           <Image
@@ -39,7 +39,7 @@ export function Footer() {
             </svg>
           </a>
         </div>
-        <p className="text-xs text-secondary">
+        <p className="text-sm text-secondary">
           &copy; {new Date().getFullYear()} ResearchMind. All rights reserved.
         </p>
       </div>

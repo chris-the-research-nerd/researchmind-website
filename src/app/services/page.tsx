@@ -15,7 +15,7 @@ export default function ServicesPage() {
     <Section>
       <Container>
         <FadeIn>
-          <h1 className="font-heading text-4xl md:text-5xl font-semibold tracking-tight mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-6">
             Our services
           </h1>
           <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-16">

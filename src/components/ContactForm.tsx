@@ -48,7 +48,7 @@ export function ContactForm() {
           id="name"
           name="name"
           required
-          className="w-full border border-border bg-white px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors duration-200"
+          className="w-full border border-border bg-white px-4 py-3 text-sm rounded focus:outline-none focus:border-foreground focus:ring-1 focus:ring-foreground/10 transition-colors duration-200"
         />
       </div>
       <div>
@@ -60,7 +60,7 @@ export function ContactForm() {
           id="email"
           name="email"
           required
-          className="w-full border border-border bg-white px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors duration-200"
+          className="w-full border border-border bg-white px-4 py-3 text-sm rounded focus:outline-none focus:border-foreground focus:ring-1 focus:ring-foreground/10 transition-colors duration-200"
         />
       </div>
       <div>
@@ -72,7 +72,7 @@ export function ContactForm() {
           name="message"
           rows={6}
           required
-          className="w-full border border-border bg-white px-4 py-3 text-sm focus:outline-none focus:border-foreground transition-colors duration-200 resize-none"
+          className="w-full border border-border bg-white px-4 py-3 text-sm rounded focus:outline-none focus:border-foreground focus:ring-1 focus:ring-foreground/10 transition-colors duration-200 resize-none"
         />
       </div>
       {error && (
@@ -82,7 +82,7 @@ export function ContactForm() {
       )}
       <button
         type="submit"
-        className="bg-foreground text-white px-8 py-3.5 text-sm font-medium tracking-wide hover:bg-[#333333] transition-colors duration-200"
+        className="bg-foreground text-white px-8 py-3.5 text-sm font-medium tracking-[0.02em] rounded hover:bg-accent transition-colors duration-200"
       >
         Send message
       </button>

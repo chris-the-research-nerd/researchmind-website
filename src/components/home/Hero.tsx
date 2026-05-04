@@ -5,7 +5,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function Hero() {
   return (
-    <section className="pt-24 pb-16 md:pt-36 md:pb-24 lg:pt-44 lg:pb-32">
+    <section className="pt-20 pb-14 md:pt-28 md:pb-20 lg:pt-36 lg:pb-24">
       <Container>
         <FadeIn>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-medium tracking-tight leading-[1.08] max-w-[900px]">
@@ -20,12 +20,12 @@ export function Hero() {
           </p>
         </FadeIn>
         <FadeIn delay={200}>
-          <div className="mt-10 w-10 h-px bg-border" />
+          <div className="mt-10 w-12 h-px bg-foreground/20" />
           <div className="mt-6 space-y-1">
             {hero.anchors.map((line) => (
               <p
                 key={line}
-                className="text-sm text-secondary/80 tracking-[0.04em]"
+                className="text-sm text-secondary tracking-[0.04em]"
               >
                 {line}
               </p>
