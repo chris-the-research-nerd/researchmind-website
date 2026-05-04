@@ -13,21 +13,21 @@ export const metadata: Metadata = {
 const team = [
   {
     name: "Tanaz Molapour, Ph.D.",
-    role: "Founder & CEO",
+    role: "Founder & CEO | Principal Researcher",
     photo: "/images/tanaz.webp",
-    bio: "Tanaz is a mixed-methods UX researcher with deep expertise in human emotion, cognition, and behavior. She holds a Ph.D. in Clinical Neuroscience from the Karolinska Institutet and completed postdoctoral work at Caltech, studying the computational and neural foundations of social behavior. She has since applied that scientific rigor to product and brand research at Red Bull and in consulting engagements across consumer tech and education. At ResearchMind, Tanaz brings a rare ability to connect behavioral science with practical business questions, helping clients uncover the why behind what their customers say and do.",
+    bio: "Tanaz brings a rare combination of scientific depth and business intuition to every engagement. Trained in neuroscience at the Karolinska Institutet and Caltech, she understands how people think, feel, and make decisions. She founded ResearchMind to help organizations tap into that understanding, turning behavioral insight into strategies that drive growth, retention, and smarter products.",
   },
   {
     name: "Chris Berger, Ph.D.",
-    role: "Co-Founder",
+    role: "Co-Founder | Principal Researcher",
     photo: "/images/chris.webp",
-    bio: "Chris is a mixed-methods researcher, research leader, and former neuroscientist who has spent his career helping organizations understand people and build products that serve them. He holds a Ph.D. in Neuroscience from the Karolinska Institutet and completed postdoctoral research at Caltech, where he studied human perception and developed assistive technologies. He went on to lead research and analytics teams across TikTok, Meta, and Microsoft, covering product strategy in areas from AI and monetization to privacy and user growth. At ResearchMind, Chris brings that breadth of experience to help clients ask better questions, make sense of complex data, and move with confidence.",
+    bio: "Chris pairs a background in neuroscience (Karolinska Institutet, Caltech) with years of leading research and analytics at TikTok, Meta, and Microsoft. He co-founded ResearchMind to give organizations access to the kind of rigorous, clear-headed thinking that helps them understand their customers, make sense of complex data, and move forward with confidence.",
   },
   {
     name: "Agnes Tongur, M.S.",
     role: "Principal Researcher",
     photo: "/images/agnes.webp",
-    bio: "Agnes is a versatile researcher with over 15 years of experience working at the intersection of data, policy, and public impact. She holds an M.S. from Stockholm University and has spent her career partnering with educational providers, policy makers, and international organizations to turn complex data into clear, actionable guidance. Her expertise spans mixed-methods research, program evaluation, data analysis, and public policy development. At ResearchMind, Agnes brings methodological depth and operational precision to every engagement.",
+    bio: "Agnes brings over 15 years of hands-on research experience to ResearchMind. With a background in the social sciences from Stockholm University, she has spent her career helping educational providers, governments, and international organizations use data to make better decisions. She brings methodological precision and a talent for turning complexity into clarity.",
   },
 ];
 
