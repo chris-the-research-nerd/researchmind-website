@@ -10,7 +10,7 @@ export function WhatWeDo() {
       <NeuralMesh />
       <Container narrow>
         <FadeIn>
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-8">
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-8 text-center">
             What we do
           </h2>
         </FadeIn>
