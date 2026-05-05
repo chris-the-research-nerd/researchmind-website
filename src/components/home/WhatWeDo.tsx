@@ -6,7 +6,7 @@ import { NeuralMesh } from "@/components/ui/NeuralMesh";
 
 export function WhatWeDo() {
   return (
-    <Section className="border-t border-border relative overflow-hidden">
+    <Section className="relative overflow-hidden">
       <NeuralMesh />
       <Container narrow>
         <FadeIn>

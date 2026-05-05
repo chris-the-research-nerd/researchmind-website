@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function FinalCTA() {
   return (
-    <Section className="border-t border-border">
+    <Section>
       <Container narrow className="text-center">
         <FadeIn>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-6">
