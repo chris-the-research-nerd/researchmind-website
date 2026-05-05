@@ -28,9 +28,9 @@ export function Services() {
             Services
           </h2>
         </FadeIn>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6">
           {services.map((service, i) => (
-            <FadeIn key={service.titleAccent} delay={i * 75} className="flex">
+            <FadeIn key={service.titleAccent} delay={i * 75} className="flex w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
               <Card
                 icon={iconMap[service.icon]}
                 titleBefore={service.titleBefore}
