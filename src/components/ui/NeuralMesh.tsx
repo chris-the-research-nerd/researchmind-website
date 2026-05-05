@@ -10,9 +10,9 @@ type Node = {
   accent: boolean;
 };
 
-const NODE_COUNT = 36;
-const CONNECTION_DISTANCE = 150;
-const SPEED = 0.18;
+const NODE_COUNT = 48;
+const CONNECTION_DISTANCE = 160;
+const SPEED = 0.2;
 
 export function NeuralMesh() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,7 +26,7 @@ export function NeuralMesh() {
       y: Math.random() * height,
       vx: (Math.random() - 0.5) * SPEED,
       vy: (Math.random() - 0.5) * SPEED,
-      accent: Math.random() < 0.2,
+      accent: Math.random() < 0.25,
     }));
   }, []);
 
@@ -94,11 +94,11 @@ export function NeuralMesh() {
 
           if (dist < CONNECTION_DISTANCE) {
             const hasAccent = nodes[i].accent || nodes[j].accent;
-            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.25;
+            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.35;
             ctx.strokeStyle = hasAccent
               ? `rgba(179, 58, 58, ${opacity})`
-              : `rgba(80, 80, 80, ${opacity})`;
-            ctx.lineWidth = 0.75;
+              : `rgba(60, 60, 60, ${opacity})`;
+            ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -110,10 +110,10 @@ export function NeuralMesh() {
       // Draw nodes
       for (const node of nodes) {
         ctx.fillStyle = node.accent
-          ? "rgba(179, 58, 58, 0.35)"
-          : "rgba(80, 80, 80, 0.3)";
+          ? "rgba(179, 58, 58, 0.5)"
+          : "rgba(60, 60, 60, 0.4)";
         ctx.beginPath();
-        ctx.arc(node.x, node.y, node.accent ? 2.5 : 2, 0, Math.PI * 2);
+        ctx.arc(node.x, node.y, node.accent ? 3 : 2.5, 0, Math.PI * 2);
         ctx.fill();
       }
 
