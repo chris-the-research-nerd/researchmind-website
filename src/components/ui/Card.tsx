@@ -6,7 +6,8 @@ type CardProps = {
   titleBefore: string;
   titleAccent: string;
   titleAfter: string;
-  description: string;
+  description?: string;
+  forWhen?: string[];
   href?: string;
 };
 
@@ -16,6 +17,7 @@ export function Card({
   titleAccent,
   titleAfter,
   description,
+  forWhen,
   href,
 }: CardProps) {
   const content = (
@@ -28,13 +30,35 @@ export function Card({
           {titleAfter}
         </h3>
       </div>
-      <p className="text-secondary leading-[1.65] text-base">
-        {description}
-      </p>
+      {forWhen ? (
+        <>
+          <p className="text-xs font-semibold tracking-[0.12em] text-secondary uppercase mb-3">
+            For when
+          </p>
+          <ul className="space-y-2">
+            {forWhen.map((item) => (
+              <li
+                key={item}
+                className="text-secondary text-base leading-[1.55] flex gap-2.5"
+              >
+                <span
+                  className="text-accent shrink-0 mt-[0.45em] leading-none"
+                  aria-hidden="true"
+                >
+                  •
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p className="text-secondary leading-[1.65] text-base">{description}</p>
+      )}
     </>
   );
 
-  const className = "h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 hover:-translate-y-0.5 transition-all duration-300 block";
+  const className = "h-full p-8 lg:p-10 rounded-lg border border-border shadow-sm hover:shadow-md hover:border-secondary/40 hover:-translate-y-0.5 hover:rotate-[0.5deg] transition-all duration-300 block";
 
   if (href) {
     return (

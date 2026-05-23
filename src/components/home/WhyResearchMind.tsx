@@ -2,11 +2,13 @@ import { whyResearchMind } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { NeuralMesh } from "@/components/ui/NeuralMesh";
 
 export function WhyResearchMind() {
   return (
-    <Section className="bg-muted">
-      <Container>
+    <Section className="relative overflow-hidden bg-muted">
+      <NeuralMesh />
+      <Container className="relative">
         <FadeIn>
           <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-12 text-center">
             Why ResearchMind

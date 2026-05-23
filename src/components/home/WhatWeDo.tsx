@@ -2,16 +2,15 @@ import { whatWeDo } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { NeuralMesh } from "@/components/ui/NeuralMesh";
 
 export function WhatWeDo() {
   return (
-    <Section className="relative overflow-hidden">
-      <NeuralMesh />
+    <Section>
       <Container narrow>
         <FadeIn>
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold tracking-tight mb-8 text-center">
-            What we do
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight">
+            {whatWeDo.taglineBefore}
+            <span className="text-accent">{whatWeDo.taglineAccent}</span>
           </h2>
         </FadeIn>
         <div className="space-y-6">

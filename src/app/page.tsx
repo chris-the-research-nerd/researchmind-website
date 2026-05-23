@@ -1,5 +1,5 @@
 import { Hero } from "@/components/home/Hero";
-import { WhatWeDo } from "@/components/home/WhatWeDo";
+import { ScrollQuestions } from "@/components/home/ScrollQuestions";
 import { Services } from "@/components/home/Services";
 import { WhyResearchMind } from "@/components/home/WhyResearchMind";
 import { RecentEngagements } from "@/components/home/RecentEngagements";
@@ -9,11 +9,11 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <WhatWeDo />
+      <ScrollQuestions />
       <Services />
       <WhyResearchMind />
-      <RecentEngagements />
       <FinalCTA />
+      <RecentEngagements />
     </>
   );
 }

@@ -42,6 +42,14 @@ Repo: https://github.com/chris-the-research-nerd/researchmind-website
 - Email: info@researchmindconsulting.com
 - LinkedIn: https://www.linkedin.com/company/research-mind-consulting/
 
+## Pending Copy Updates — Service Card Descriptions (Draft)
+Reframe service cards as first-person client questions (approved direction, needs final sign-off):
+- **Qualitative Research**: "I need to understand why our customers are making the choices they're making. What are they actually thinking?"
+- **Quantitative Research**: "I need real data to back up our decisions. Not hunches, not anecdotes. Numbers I can trust."
+- **Advanced Analytics**: "We have all this data, but I'm not sure what it's actually telling us. What are we missing?"
+- **Market & Brand Strategy**: "I need to figure out where we fit in the market and how to stand out. What should our next move be?"
+- **AI Workflow Enablement**: "I keep hearing about AI, but I want to know what it can actually do for our team. Where do we start?"
+
 ## Development
 - `npm run dev` to run locally
 - Push to `main` triggers GitHub Actions build and deploy to GitHub Pages

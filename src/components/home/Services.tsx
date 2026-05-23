@@ -36,7 +36,7 @@ export function Services() {
                 titleBefore={service.titleBefore}
                 titleAccent={service.titleAccent}
                 titleAfter={service.titleAfter}
-                description={service.description}
+                forWhen={service.forWhen}
                 href={`/services#${service.id}`}
               />
             </FadeIn>

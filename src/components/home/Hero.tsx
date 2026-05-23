@@ -6,13 +6,27 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function Hero() {
   return (
-    <section className="pt-20 pb-14 md:pt-28 md:pb-20 lg:pt-36 lg:pb-24">
-      <Container>
+    <section className="relative pt-20 pb-14 md:pt-28 md:pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+          maskImage:
+            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+      <Container className="relative">
         <FadeIn>
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-medium tracking-tight leading-[1.08] max-w-[900px]">
-            {hero.headlineBefore}
-            <span className="text-accent">{hero.headlineAccent}</span>
-            {hero.headlineAfter}
+            <span className="hero-anim-sink">Deeper</span> insights.{" "}
+            <span className="hero-anim-pointy">Sharper</span> strategy. Real{" "}
+            <span className="hero-anim-grow text-accent">results</span> for your
+            organization.
           </h1>
         </FadeIn>
         <FadeIn delay={100}>
@@ -26,7 +40,7 @@ export function Hero() {
               <Link
                 key={anchor.label}
                 href={anchor.href}
-                className="text-sm text-secondary/80 tracking-[0.02em] px-3.5 py-1 rounded-full bg-muted hover:bg-foreground/5 hover:text-secondary transition-colors duration-200"
+                className="text-sm text-secondary/80 tracking-[0.02em] px-3.5 py-1.5 rounded-sm bg-muted hover:bg-foreground/5 hover:text-secondary hover:rotate-[0.5deg] hover:-translate-y-0.5 transition-all duration-200"
               >
                 {anchor.label}
               </Link>

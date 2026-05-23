@@ -6,8 +6,8 @@
   --color-muted: #f5f5f4;
   --color-border: #e5e5e5;
   --color-accent: #B33A3A;
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-fraunces);
+  --font-sans: var(--font-geist);
+  --font-heading: var(--font-geist);
 }
 
 @keyframes scroll {
@@ -16,6 +16,79 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* 24s synchronized cycle:
+   0-4s   initial rest
+   4-6s   Deeper sinks (holds)
+   7-9s   Sharper sharpens (holds)
+   10-12s results grows (holds)
+   12-19s all three held at peak
+   19-21s all return to rest
+   21-24s rest before next cycle */
+
+@keyframes hero-sink {
+  0%, 17% {
+    transform: translateY(0);
+  }
+  25%, 79% {
+    transform: translateY(0.4em);
+  }
+  88%, 100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-pointy {
+  0%, 29% {
+    transform: skewX(0);
+    letter-spacing: normal;
+  }
+  38%, 79% {
+    transform: skewX(-20deg);
+    letter-spacing: -0.05em;
+  }
+  88%, 100% {
+    transform: skewX(0);
+    letter-spacing: normal;
+  }
+}
+
+@keyframes hero-grow {
+  0%, 42% {
+    transform: scale(1);
+  }
+  50%, 79% {
+    transform: scale(1.2);
+  }
+  88%, 100% {
+    transform: scale(1);
+  }
+}
+
+.hero-anim-sink {
+  display: inline-block;
+  animation: hero-sink 24s ease-in-out infinite;
+}
+
+.hero-anim-pointy {
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: hero-pointy 24s ease-in-out infinite;
+}
+
+.hero-anim-grow {
+  display: inline-block;
+  transform-origin: center;
+  animation: hero-grow 24s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim-sink,
+  .hero-anim-pointy,
+  .hero-anim-grow {
+    animation: none;
   }
 }
 
