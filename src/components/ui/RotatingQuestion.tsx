@@ -31,35 +31,36 @@ export function RotatingQuestion({ questions, className = "" }: RotatingQuestion
   return (
     <div
       className={`relative border-l-2 border-accent pl-5 md:pl-6 overflow-hidden ${className}`}
-      style={{ minHeight: "5rem" }}
     >
-      {questions.map((q, i) => {
-        const isCurrent = i === index;
-        const wasPrev = i === prevRef.current && !isCurrent;
-        const animated = isCurrent || wasPrev;
+      <div className="grid">
+        {questions.map((q, i) => {
+          const isCurrent = i === index;
+          const wasPrev = i === prevRef.current && !isCurrent;
+          const animated = isCurrent || wasPrev;
 
-        const transform = isCurrent
-          ? "translateY(0)"
-          : wasPrev
-            ? "translateY(-100%)"
-            : "translateY(100%)";
+          const transform = isCurrent
+            ? "translateY(0)"
+            : wasPrev
+              ? "translateY(-100%)"
+              : "translateY(100%)";
 
-        return (
-          <p
-            key={i}
-            className="absolute left-5 md:left-6 right-0 top-0 font-heading text-2xl md:text-3xl font-semibold tracking-tight text-foreground leading-snug"
-            style={{
-              transition: animated
-                ? `transform ${ANIM_MS}ms ease-out, opacity ${ANIM_MS}ms ease-out`
-                : "none",
-              transform,
-              opacity: isCurrent ? 1 : 0,
-            }}
-          >
-            {q}
-          </p>
-        );
-      })}
+          return (
+            <p
+              key={i}
+              className="col-start-1 row-start-1 font-heading text-2xl md:text-3xl font-semibold tracking-tight text-foreground leading-snug"
+              style={{
+                transition: animated
+                  ? `transform ${ANIM_MS}ms ease-out, opacity ${ANIM_MS}ms ease-out`
+                  : "none",
+                transform,
+                opacity: isCurrent ? 1 : 0,
+              }}
+            >
+              {q}
+            </p>
+          );
+        })}
+      </div>
     </div>
   );
 }

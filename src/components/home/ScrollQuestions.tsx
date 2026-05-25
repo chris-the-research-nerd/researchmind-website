@@ -3,9 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { rollingQuestions, services, whatWeDo } from "@/content/home";
 
+// Homepage paragraph: the 6 cross-cutting questions plus one strongest pick per service.
 const ALL_QUESTIONS: string[] = [
   ...rollingQuestions,
-  ...services.flatMap((s) => s.questions),
+  services[0].questions[1], // Qualitative
+  services[1].questions[0], // Quantitative
+  services[2].questions[1], // Advanced Analytics
+  services[3].questions[2], // Market & Brand Strategy
+  services[4].questions[0], // AI Workflow Enablement
 ];
 
 function seededShuffle<T>(array: T[], seed: number): T[] {

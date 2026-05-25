@@ -19,69 +19,69 @@
   }
 }
 
-/* 24s synchronized cycle:
-   0-4s   initial rest
-   4-6s   Deeper sinks (holds)
-   7-9s   Sharper sharpens (holds)
-   10-12s results grows (holds)
-   12-19s all three held at peak
-   19-21s all return to rest
-   21-24s rest before next cycle */
+/* 20s synchronized cycle (overlapping cascade, each word starts ~500ms after the previous):
+   0-4s     initial rest
+   4-6s     Deeper sinks (holds)
+   4.5-6.5s Sharper sharpens (holds)
+   5-7s     results grows (holds)
+   7-14s    all three held at peak
+   14-16s   all return to rest
+   16-20s   rest before next cycle */
 
 @keyframes hero-sink {
-  0%, 17% {
+  0%, 20% {
     transform: translateY(0);
   }
-  25%, 79% {
+  30%, 70% {
     transform: translateY(0.4em);
   }
-  88%, 100% {
+  80%, 100% {
     transform: translateY(0);
   }
 }
 
 @keyframes hero-pointy {
-  0%, 29% {
+  0%, 22% {
     transform: skewX(0);
     letter-spacing: normal;
   }
-  38%, 79% {
+  32%, 70% {
     transform: skewX(-20deg);
     letter-spacing: -0.05em;
   }
-  88%, 100% {
+  80%, 100% {
     transform: skewX(0);
     letter-spacing: normal;
   }
 }
 
 @keyframes hero-grow {
-  0%, 42% {
+  0%, 25% {
     transform: scale(1);
   }
-  50%, 79% {
+  35%, 70% {
     transform: scale(1.2);
   }
-  88%, 100% {
+  80%, 100% {
     transform: scale(1);
   }
 }
 
 .hero-anim-sink {
   display: inline-block;
-  animation: hero-sink 24s ease-in-out infinite;
+  animation: hero-sink 20s ease-in-out infinite;
 }
 
 .hero-anim-pointy {
   display: inline-block;
   transform-origin: bottom center;
-  animation: hero-pointy 24s ease-in-out infinite;
+  animation: hero-pointy 20s ease-in-out infinite;
 }
 
 .hero-anim-grow {
   display: inline-block;
   transform-origin: center;
-  animation: hero-grow 24s ease-in-out infinite;
+  animation: hero-grow 20s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
