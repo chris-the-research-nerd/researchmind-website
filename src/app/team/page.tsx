@@ -15,19 +15,19 @@ const team = [
     name: "Tanaz Molapour, Ph.D.",
     role: "Founder & CEO | Principal Researcher",
     photo: "/images/tanaz.webp",
-    bio: "Tanaz brings a rare combination of scientific depth and business intuition to every engagement. Trained in neuroscience at the Karolinska Institutet and Caltech, her background in computational modeling, neural networks, and machine learning gives her a foundational fluency in AI that most researchers simply don\u2019t have. She founded ResearchMind to help organizations tap into that dual expertise, turning behavioral insight and modern AI into strategies that drive growth, retention, and smarter products.",
+    bio: "Tanaz founded ResearchMind in 2020 with one simple goal: help businesses get clear answers to the questions that matter for their success. With training in psychology and neuroscience (Karolinska Institutet, Caltech), her methodological rigor shapes every stage of the work, from how questions are framed and data is collected, to how findings are analyzed and translated into impact. Today, she leads research, strategy, and AI-enablement engagements for dozens of organizations across the US, EU, and UK.",
   },
   {
     name: "Chris Berger, Ph.D.",
     role: "Co-Founder | Principal Researcher",
     photo: "/images/chris.webp",
-    bio: "Chris pairs a background in neuroscience (Karolinska Institutet, Caltech) with years of leading research and analytics at TikTok, Meta, and Microsoft. His training in computational neuroscience gives him a native understanding of machine learning, neural networks, and the AI systems reshaping how teams work. He co-founded ResearchMind to bring that combined expertise to organizations looking to understand their customers, make sense of complex data, and move forward with confidence.",
+    bio: "Chris leads ResearchMind\u2019s quantitative and analytics work. He spent over a decade in research and analytics leadership at TikTok, Meta, and Microsoft.",
   },
   {
     name: "Agnes Tongur, M.S.",
     role: "Principal Researcher",
     photo: "/images/agnes.webp",
-    bio: "Agnes brings over 15 years of hands-on research experience to ResearchMind. With a background in the social sciences from Stockholm University, she has spent her career helping educational providers, governments, and international organizations use data to make better decisions. She brings methodological precision and a talent for turning complexity into clarity.",
+    bio: "Agnes specializes in applied research for educational providers, governments, and international organizations, with 15+ years turning complex data into clear decisions.",
   },
 ];
 
