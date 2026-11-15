@@ -8,7 +8,7 @@ export function Footer() {
         <Link href="/">
           <Image
             src="/logo.webp"
-            alt="ResearchMind"
+            alt="Research Mind"
             width={140}
             height={32}
             className="h-9 w-auto"
@@ -43,7 +43,7 @@ export function Footer() {
           </a>
         </div>
         <p className="text-sm text-secondary">
-          &copy; {new Date().getFullYear()} ResearchMind. All rights reserved.
+          &copy; {new Date().getFullYear()} Research Mind. All rights reserved.
         </p>
       </div>
     </footer>

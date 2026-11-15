@@ -4,7 +4,8 @@
 export const hero = {
   lines: ["Understand your customers.", "Get real value from AI.", "Get found in AI search."],
   subline:
-    "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+    "Research Mind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+  proof: "Founded in 2020. Projects for dozens of organizations across the US, UK, and EU.",
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },
 };
@@ -31,6 +32,7 @@ export type Practice = {
   agentReason: "research" | "ai" | "visibility"; // ?for= key on /agents
   hook: string;
   summary: string;
+  alsoCalled?: string; // plain-language note shown on the services page
   forWhen: string[];
   included: { name: string; description: string }[];
   questions: string[];
@@ -102,13 +104,13 @@ export const practices: Practice[] = [
     ],
     included: [
       {
-        name: "AI opportunity assessment",
+        name: "Find where AI saves you time",
         description:
           "We look at how your team works and list where AI would save the most time, starting with the easiest wins.",
       },
       {
-        name: "Automation",
-        description: "We set up automations for repetitive work.",
+        name: "Automate repetitive work",
+        description: "We set up routine tasks to run on their own, so your team doesn\u2019t do them by hand.",
       },
       {
         name: "Custom AI tools",
@@ -134,6 +136,7 @@ export const practices: Practice[] = [
     hook: "When customers ask ChatGPT about products or services like yours, do you come up?",
     summary:
       "We check what ChatGPT, Gemini, and other AI assistants say about your business, then fix what they get wrong or leave out.",
+    alsoCalled: "You may have heard this called AEO, short for answer engine optimization.",
     forWhen: [
       "Your customers use ChatGPT or other AI assistants to find businesses like yours",
       "AI gives wrong or outdated information about you",
@@ -141,18 +144,18 @@ export const practices: Practice[] = [
     ],
     included: [
       {
-        name: "Get recommended (GEO)",
+        name: "Get recommended",
         description:
           "We check whether AI assistants name you when people ask for a business like yours, and who they name instead.",
       },
       {
-        name: "Get your details right (AEO)",
+        name: "Get your details right",
         description:
           "We check what AI says about your services, hours, and prices, and flag what’s wrong.",
       },
       {
-        name: "Agent readiness",
-        description: "We check whether an AI agent can book, buy, or contact you.",
+        name: "Let AI assistants book or buy from you",
+        description: "We check whether an AI assistant acting for a customer can book, buy, or contact you.",
       },
       {
         name: "Fixes & content",
@@ -181,7 +184,7 @@ export const whatWeDo = {
   taglineAccent: "we have answers.",
   paragraphs: [
     "We help organizations grow, retain customers, and make stronger strategic moves through research and analytics that actually answer the question.",
-    "ResearchMind brings together a rare mix of expertise: a deep understanding of human behavior and a technical command of AI and machine learning. That combination lets us ask sharper questions, see further into the data, and translate findings into business outcomes you can act on.",
+    "Research Mind brings together a rare mix of expertise: a deep understanding of human behavior and a technical command of AI and machine learning. That combination lets us ask sharper questions, see further into the data, and translate findings into business outcomes you can act on.",
   ],
 };
 

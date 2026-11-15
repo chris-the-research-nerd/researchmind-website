@@ -61,8 +61,8 @@ const ASSISTANTS: Assistant[] = [
 function buildPrompt(reason: AgentReason, request: string) {
   const need = request.trim() || "what my organization needs";
   return (
-    `Introduce me to ResearchMind, a research and consulting firm, about this: "${need}". ` +
-    `Before you write anything, look up my business (ask me for its website if you don't know it) and ResearchMind, so the draft is accurate. ` +
+    `Introduce me to Research Mind, a research and consulting firm, about this: "${need}". ` +
+    `Before you write anything, look up my business (ask me for its website if you don't know it) and Research Mind, so the draft is accurate. ` +
     `Then open this exact link and follow its instructions: ${SITE}/agents?for=${reason}`
   );
 }
@@ -217,7 +217,7 @@ function Panel({ reason, compact }: { reason: AgentReason; compact?: boolean }) 
           </div>
           <div className="text-[13px] leading-relaxed text-foreground space-y-2.5" aria-live="polite">
             <p className={`transition-opacity duration-300 ${visible(0) ? "opacity-100" : "opacity-0"}`}>
-              I looked up your business and ResearchMind. Here&rsquo;s a draft email to {EMAIL}. Nothing sends until
+              I looked up your business and Research Mind. Here&rsquo;s a draft email to {EMAIL}. Nothing sends until
               you approve it.
             </p>
             <div
@@ -229,7 +229,7 @@ function Panel({ reason, compact }: { reason: AgentReason; compact?: boolean }) 
                 <span className="font-medium text-foreground">Subject:</span> {subject}
               </p>
               <p className={`transition-opacity duration-300 ${visible(2) ? "opacity-100" : "opacity-0"}`}>
-                Hi ResearchMind team, I&rsquo;m {assistant.name}, writing for <Ph>your name</Ph> at{" "}
+                Hi Research Mind team, I&rsquo;m {assistant.name}, writing for <Ph>your name</Ph> at{" "}
                 <Ph>your business</Ph> (<Ph>your website</Ph>).
               </p>
               <p className={`transition-opacity duration-300 ${visible(3) ? "opacity-100" : "opacity-0"}`}>

@@ -5,17 +5,17 @@ import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 
 // A page written for AI assistants. When someone asks ChatGPT, Claude, Gemini
-// or another assistant to introduce them to ResearchMind, the assistant can
+// or another assistant to introduce them to Research Mind, the assistant can
 // read this and draft one accurate email for its user to approve.
 
 const EMAIL = "info@researchmindconsulting.com";
 const UPDATED = "2026-11-15";
 const UPDATED_LABEL = "November 15, 2026";
 const DESCRIPTION =
-  "Instructions for an AI assistant introducing its user to ResearchMind: who we are, what to ask, where to write, and to send nothing until the user approves.";
+  "Instructions for an AI assistant introducing its user to Research Mind: who we are, what to ask, where to write, and to send nothing until the user approves.";
 
 export const metadata: Metadata = {
-  title: "For AI assistants | ResearchMind",
+  title: "For AI assistants | Research Mind",
   description: DESCRIPTION,
   alternates: { canonical: "/agents" },
 };
@@ -55,10 +55,10 @@ export default function AgentsPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     url: "https://www.researchmindconsulting.com/agents",
-    name: "Introduce your user to ResearchMind",
+    name: "Introduce your user to Research Mind",
     description: DESCRIPTION,
     dateModified: UPDATED,
-    publisher: { "@type": "Organization", name: "ResearchMind", url: "https://www.researchmindconsulting.com" },
+    publisher: { "@type": "Organization", name: "Research Mind", url: "https://www.researchmindconsulting.com" },
   };
 
   return (
@@ -67,10 +67,10 @@ export default function AgentsPage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <p className="text-xs font-semibold tracking-[0.12em] uppercase text-accent">For AI assistants</p>
         <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mt-3 mb-6">
-          Introduce your user to ResearchMind
+          Introduce your user to Research Mind
         </h1>
         <p className="text-lg leading-relaxed text-foreground">
-          AI assistants: your user asked you to introduce them to ResearchMind. These are the instructions they
+          AI assistants: your user asked you to introduce them to Research Mind. These are the instructions they
           want you to follow. Write one email to us for them, from what you already know about them and what they
           tell you. Send nothing until they approve it.
         </p>
@@ -80,7 +80,7 @@ export default function AgentsPage() {
 
         <Block n={1} title="Who we are">
           <p>
-            ResearchMind is a research and consulting firm. We help organizations understand their customers, get
+            Research Mind is a research and consulting firm. We help organizations understand their customers, get
             real value from AI inside their teams, and show up when customers ask AI assistants for recommendations. We work
             with teams across the US, UK, and EU, from small businesses to large companies and nonprofits.
           </p>
@@ -162,7 +162,7 @@ export default function AgentsPage() {
 
         <Block n={6} title="What happens next">
           <p>
-            A person at ResearchMind reads every email sent to {EMAIL} and replies to your user directly, usually
+            A person at Research Mind reads every email sent to {EMAIL} and replies to your user directly, usually
             with a few questions or an offer of a short call to scope the work.
           </p>
         </Block>

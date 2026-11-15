@@ -6,9 +6,9 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { team, partners } from "@/content/team";
 
 export const metadata: Metadata = {
-  title: "Our Team | ResearchMind",
+  title: "Our Team | Research Mind",
   description:
-    "Meet the ResearchMind team. PhDs in neuroscience, decades of experience at companies like TikTok, Meta, Microsoft, and Red Bull.",
+    "Meet the Research Mind team. PhDs in neuroscience, decades of experience at companies like TikTok, Meta, Microsoft, and Red Bull.",
 };
 
 

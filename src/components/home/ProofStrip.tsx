@@ -1,4 +1,4 @@
-import { clientsAndPartners } from "@/content/home";
+import { clientsAndPartners, hero } from "@/content/home";
 import { Container } from "@/components/layout/Container";
 import { LogoCarousel } from "@/components/ui/LogoCarousel";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -12,6 +12,7 @@ export function ProofStrip() {
             {clientsAndPartners.heading}
           </p>
           <LogoCarousel logos={clientsAndPartners.logos} />
+          <p className="text-secondary text-sm md:text-base text-center mt-2">{hero.proof}</p>
         </FadeIn>
       </Container>
     </section>

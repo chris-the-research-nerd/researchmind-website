@@ -12,6 +12,12 @@ const navLinks = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Desktop: the menu starts open; the triangle hides and shows it
+  const [desktopOpen, setDesktopOpen] = useState(true);
+  const toggle = () => {
+    if (window.matchMedia("(min-width: 768px)").matches) setDesktopOpen((v) => !v);
+    else setMobileOpen((v) => !v);
+  };
 
   return (
     <header className="border-b border-border sticky top-0 z-50 bg-white">
@@ -19,7 +25,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.webp"
-            alt="ResearchMind"
+            alt="Research Mind"
             width={180}
             height={40}
             className="h-10 md:h-11 w-auto"
@@ -29,20 +35,19 @@ export function Header() {
         <nav
           className="hidden md:flex absolute right-14 top-1/2 items-center gap-8 bg-white pr-3 whitespace-nowrap transition-[transform,opacity] duration-300 ease-out"
           style={{
-            transform: mobileOpen
+            transform: desktopOpen
               ? "translateY(-50%) translateX(0)"
               : "translateY(-50%) translateX(120%)",
-            opacity: mobileOpen ? 1 : 0,
-            pointerEvents: mobileOpen ? "auto" : "none",
+            opacity: desktopOpen ? 1 : 0,
+            pointerEvents: desktopOpen ? "auto" : "none",
           }}
-          aria-hidden={!mobileOpen}
+          aria-hidden={!desktopOpen}
         >
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="text-sm text-secondary hover:text-foreground transition-colors duration-200"
-              onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
@@ -50,17 +55,14 @@ export function Header() {
         </nav>
         <button
           className="relative z-50 p-2 -mr-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          onClick={toggle}
+          aria-label="Show or hide menu"
         >
           <svg
             width="18"
             height="18"
             viewBox="0 0 18 18"
-            className="transition-transform duration-300 ease-out"
-            style={{
-              transform: mobileOpen ? "rotate(90deg)" : "rotate(0deg)",
-            }}
+            className={`transition-transform duration-300 ease-out ${mobileOpen ? "rotate-90" : "rotate-0"} ${desktopOpen ? "md:rotate-0" : "md:rotate-180"}`}
             aria-hidden="true"
           >
             <polygon points="3,2 16,9 3,16" fill="currentColor" />

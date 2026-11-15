@@ -5,8 +5,8 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { ContactSections } from "@/components/ContactSections";
 
 export const metadata: Metadata = {
-  title: "Contact | ResearchMind",
-  description: "Get in touch with ResearchMind.",
+  title: "Contact | Research Mind",
+  description: "Get in touch with Research Mind.",
 };
 
 export default function ContactPage() {

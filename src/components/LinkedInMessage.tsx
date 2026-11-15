@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-// "Message us on LinkedIn": copy a ready-made opener, open the ResearchMind
+// "Message us on LinkedIn": copy a ready-made opener, open the Research Mind
 // company page, press Message, paste. LinkedIn has no reliable link that pre-fills a message.
 
 export const RM_LINKEDIN = "https://www.linkedin.com/company/research-mind-consulting/";
@@ -42,7 +42,7 @@ export function LinkedInMessage({ topic }: { topic?: string } = {}) {
           </button>
         </li>
         <li>
-          <p className="font-medium">2. On the ResearchMind LinkedIn page, press Message.</p>
+          <p className="font-medium">2. On the Research Mind LinkedIn page, press Message.</p>
         </li>
         <li>
           <p className="font-medium">3. Paste the message, fill in the brackets, and send it.</p>

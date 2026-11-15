@@ -3,13 +3,13 @@ export const team = [
     name: "Tanaz Molapour, Ph.D.",
     role: "Founder & CEO | Principal Researcher",
     photo: "/images/tanaz.webp",
-    bio: "Tanaz founded ResearchMind in 2020. She trained in psychology and neuroscience at Karolinska Institutet and Caltech, and leads the firm’s research and strategy work, AI solutions consulting, and AI visibility work. She has run projects for dozens of organizations across the US, UK, and EU.",
+    bio: "Tanaz founded Research Mind in 2020. She trained in psychology and neuroscience at Karolinska Institutet and Caltech, and leads the firm’s research and strategy work, AI solutions consulting, and AI visibility work. She has run projects for dozens of organizations across the US, UK, and EU.",
   },
   {
     name: "Chris Berger, Ph.D.",
     role: "Co-Founder | Principal Researcher",
     photo: "/images/chris.webp",
-    bio: "Chris leads ResearchMind\u2019s quantitative work, from survey design and statistics to finding what drives customer satisfaction. He spent over a decade in research and analytics leadership roles at TikTok, Meta, and Microsoft.",
+    bio: "Chris leads Research Mind\u2019s quantitative work, from survey design and statistics to finding what drives customer satisfaction. He spent over a decade in research and analytics leadership roles at TikTok, Meta, and Microsoft.",
   },
   {
     name: "Agnes Tongur, M.S.",
