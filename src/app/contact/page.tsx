@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { ContactForm } from "@/components/ContactForm";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { ContactSections } from "@/components/ContactSections";
 
 export const metadata: Metadata = {
   title: "Contact | ResearchMind",
@@ -23,7 +23,7 @@ export default function ContactPage() {
           </p>
         </FadeIn>
         <FadeIn delay={100}>
-          <ContactForm />
+          <ContactSections />
         </FadeIn>
       </Container>
     </Section>

@@ -1,19 +1,172 @@
+// All homepage and services-page copy. Three equal practices:
+// Research & Strategy, AI Solutions (with Caritas), AI Visibility / AEO (with LA TechSpace).
+
 export const hero = {
-  headlineBefore: "Deeper insights. Sharper strategy. Real ",
-  headlineAccent: "results",
-  headlineAfter: " for your organization.",
+  lines: ["Understand your customers.", "Get real value from AI."],
+  accentLine: "Get found in AI search.",
   subline:
-    "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence, without the big-agency price tag.",
-  anchors: [
-    { label: "Qualitative Research", href: "/services#qualitative-research" },
-    { label: "Quantitative Research", href: "/services#quantitative-research" },
-    { label: "Advanced Analytics", href: "/services#advanced-analytics" },
-    { label: "Market & Brand Strategy", href: "/services#market-brand-strategy" },
-    { label: "AI Workflow Enablement", href: "/services#ai-workflow-enablement" },
-  ],
+    "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },
 };
+
+export type Logo = { name: string; src?: string; url?: string };
+
+export const clientsAndPartners = {
+  heading: "Clients & partners",
+  logos: [
+    { name: "ParentPay", src: "/logos/parentpay.svg", url: "https://www.parentpay.com/" },
+    { name: "Red Bull", src: "/logos/redbull.png", url: "https://www.redbullmediahouse.com/" },
+    { name: "Noomo", src: "/logos/noomo.png", url: "https://noomoagency.com/" },
+    { name: "Caritas", src: "/logos/caritas.png", url: "https://caritas.ventures/" },
+    { name: "LA TechSpace", src: "/logos/latechspace.png", url: "https://latechspace.com/" },
+  ] as Logo[],
+};
+
+export type Practice = {
+  id: string;
+  titleBefore: string;
+  titleAccent: string;
+  titleAfter: string;
+  icon: "BarChart3" | "Cpu" | "Search";
+  agentReason: "research" | "ai" | "visibility"; // ?for= key on /agents
+  hook: string;
+  summary: string;
+  forWhen: string[];
+  included: { name: string; description: string }[];
+  questions: string[];
+};
+
+export const practices: Practice[] = [
+  {
+    id: "research-strategy",
+    agentReason: "research",
+    titleBefore: "Research & Strategy ",
+    titleAccent: "Consulting",
+    titleAfter: "",
+    icon: "BarChart3",
+    hook: "What do your customers think of you, and what should you fix first?",
+    summary:
+      "We survey and interview your customers, members, or users, find out what matters most to them, and give you a clear list of what to do next that your team and board can act on.",
+    forWhen: [
+      "Satisfaction, renewals, or sign-ups are slipping and nobody can say why",
+      "You\u2019re about to change prices, launch something new, or rebrand, and want to know how customers will react",
+      "You need numbers your leadership or board will trust",
+      "You run a customer or member survey every year, but nothing changes after it",
+    ],
+    included: [
+      {
+        name: "Customer & member surveys",
+        description:
+          "Questions written so the answers are reliable, with results broken down by the groups that matter to you.",
+      },
+      {
+        name: "Interviews & focus groups",
+        description: "Conversations that show why customers do what they do, in their own words.",
+      },
+      {
+        name: "What drives satisfaction",
+        description:
+          "We find which parts of your service most affect how customers feel, so you know where to spend time and money.",
+      },
+      {
+        name: "Product & brand strategy",
+        description: "Where to take a product or brand next, based on what customers and the market tell us.",
+      },
+      {
+        name: "Reports people read",
+        description:
+          "Short, plain-language reports and decks for your team, board, or members, with charts that make the point.",
+      },
+    ],
+    questions: [
+      "What do our customers think of us?",
+      "What should we fix first?",
+      "Will customers pay for this?",
+      "Why are renewals slipping?",
+    ],
+  },
+  {
+    id: "ai-solutions",
+    agentReason: "ai",
+    titleBefore: "",
+    titleAccent: "AI",
+    titleAfter: " Solutions Consulting",
+    icon: "Cpu",
+    hook: "Your team spends hours every week on work AI could handle.",
+    summary:
+      "We find the parts of your work that AI can take on, build the tools, and train your team to use them.",
+    forWhen: [
+      "Your team wants to use AI but doesn’t know where to start",
+      "You’ve tried AI tools and they haven’t stuck",
+      "Leadership wants an AI plan",
+    ],
+    included: [
+      {
+        name: "AI opportunity assessment",
+        description:
+          "We look at how your team works and list where AI would save the most time, starting with the easiest wins.",
+      },
+      {
+        name: "Automation",
+        description: "We set up automations for repetitive work.",
+      },
+      {
+        name: "Custom AI tools",
+        description: "We build tools around your processes, and your team owns them.",
+      },
+      {
+        name: "Training & workshops",
+        description: "Hands-on sessions so your team can use AI well and safely.",
+      },
+    ],
+    questions: [
+      "Where could AI save us time?",
+      "How do we get started with AI?",
+    ],
+  },
+  {
+    id: "ai-visibility",
+    agentReason: "visibility",
+    titleBefore: "",
+    titleAccent: "AI",
+    titleAfter: " Visibility (AEO)",
+    icon: "Search",
+    hook: "When customers ask ChatGPT about products or services like yours, do you come up?",
+    summary:
+      "We check what ChatGPT, Gemini, and other AI assistants say about your business, then fix what they get wrong or leave out.",
+    forWhen: [
+      "Your customers use ChatGPT or other AI assistants to find businesses like yours",
+      "AI gives wrong or outdated information about you",
+      "AI recommends your competitors and not you",
+    ],
+    included: [
+      {
+        name: "Get recommended (GEO)",
+        description:
+          "We check whether AI assistants name you when people ask for a business like yours, and who they name instead.",
+      },
+      {
+        name: "Get your details right (AEO)",
+        description:
+          "We check what AI says about your services, hours, and prices, and flag what’s wrong.",
+      },
+      {
+        name: "Agent readiness",
+        description: "We check whether an AI agent can book, buy, or contact you.",
+      },
+      {
+        name: "Fixes & content",
+        description:
+          "We fix the problems in order of impact and write content that AI assistants can read and cite.",
+      },
+    ],
+    questions: [
+      "Does ChatGPT recommend us or our competitors?",
+      "What do AI tools say about our business?",
+    ],
+  },
+];
 
 export const rollingQuestions = [
   "Why are customers leaving?",
@@ -33,135 +186,6 @@ export const whatWeDo = {
   ],
 };
 
-export const services = [
-  {
-    id: "qualitative-research",
-    titleBefore: "",
-    titleAccent: "Qualitative",
-    titleAfter: " Research",
-    description:
-      "In-depth interviews, focus groups, ethnography, and usability work. We uncover the why behind what customers say and do.",
-    icon: "MessageCircle" as const,
-    questions: [
-      "Why do customers say one thing and do another?",
-      "What\u2019s actually going through our customers\u2019 heads when they decide?",
-      "What are we missing about our customers that we don\u2019t even know to ask?",
-    ],
-    forWhen: [
-      "The numbers say something changed, but no one can explain why",
-      "You\u2019re betting big on a new product and need to pressure-test the assumption",
-      "Your messaging keeps falling flat and you can\u2019t pin down which lever to pull",
-    ],
-    activities: [
-      "In-depth interviews",
-      "Focus groups",
-      "Ethnography",
-      "Usability studies",
-    ],
-  },
-  {
-    id: "quantitative-research",
-    titleBefore: "",
-    titleAccent: "Quantitative",
-    titleAfter: " Research",
-    description:
-      "Survey design, sampling, and statistical analysis at scale. Rigorous methodology, clearly communicated findings.",
-    icon: "BarChart3" as const,
-    questions: [
-      "How big is this opportunity, really?",
-      "Which features actually drive renewal, and which ones are we wasting time on?",
-      "Are we sure about who our customer is, or are we guessing?",
-    ],
-    forWhen: [
-      "Leadership needs a number, not an anecdote",
-      "You need to size a market or opportunity before making a big bet",
-      "You\u2019ve got hypotheses and need to confirm or kill them at scale",
-    ],
-    activities: [
-      "Survey design",
-      "Sampling",
-      "Statistical analysis",
-    ],
-  },
-  {
-    id: "advanced-analytics",
-    titleBefore: "Advanced ",
-    titleAccent: "Analytics",
-    titleAfter: "",
-    description:
-      "Behavioral analysis, segmentation, predictive modeling, and data synthesis. We turn complex data into clear direction.",
-    icon: "TrendingUp" as const,
-    questions: [
-      "Which customers are worth our most expensive attention?",
-      "Can we predict who\u2019s about to churn before they go?",
-      "What is our data actually telling us that we\u2019re missing?",
-    ],
-    forWhen: [
-      "You have a mountain of customer data and no clear story coming out of it",
-      "You need to predict who\u2019s about to churn, not just describe who already did",
-      "You need to know which customers to invest in before the budget conversation",
-    ],
-    activities: [
-      "Behavioral analysis",
-      "Segmentation",
-      "Predictive modeling",
-      "Data synthesis",
-    ],
-  },
-  {
-    id: "market-brand-strategy",
-    titleBefore: "Market & Brand ",
-    titleAccent: "Strategy",
-    titleAfter: "",
-    description:
-      "Market sizing, competitive landscape, positioning, messaging, and brand perception. Grounded in evidence and useful for action.",
-    icon: "Target" as const,
-    questions: [
-      "Why are competitors gaining on us? What do they have that we don\u2019t?",
-      "Is our brand still resonating, or are we coasting on what used to work?",
-      "What are we actually trying to be?",
-    ],
-    forWhen: [
-      "You\u2019re losing share and don\u2019t know why",
-      "Your category is shifting and you\u2019re not sure where you fit anymore",
-      "You\u2019re early and still figuring out what you stand for",
-    ],
-    activities: [
-      "Market sizing",
-      "Competitive landscape",
-      "Positioning",
-      "Messaging",
-      "Brand perception",
-    ],
-  },
-  {
-    id: "ai-workflow-enablement",
-    titleBefore: "",
-    titleAccent: "AI",
-    titleAfter: " Workflow Enablement",
-    description:
-      "We help organizations put AI to work. Not as a buzzword, but as a real driver of speed, scale, and quality across teams. Whether it\u2019s automating routine work, scaling analysis, or rethinking a process from scratch, we bring hands-on experience to make it real.",
-    icon: "Cpu" as const,
-    questions: [
-      "Where could AI actually save us time without breaking anything?",
-      "How do we get serious about AI without wasting six months?",
-      "Should we be worried we\u2019re falling behind?",
-    ],
-    forWhen: [
-      "The team is excited about AI but doesn\u2019t know where to start",
-      "You\u2019ve tried a few AI tools and nothing has actually stuck",
-      "Leadership is asking what you\u2019re doing about AI and you need a real answer",
-    ],
-    activities: [
-      "AI evaluation",
-      "Automation design",
-      "Scaled analysis",
-      "Process redesign",
-      "Training & education",
-    ],
-  },
-];
-
 export const whyResearchMind = [
   {
     title: "Rare expertise, applied directly to your business.",
@@ -176,7 +200,7 @@ export const whyResearchMind = [
   {
     title: "Big-agency rigor, right-sized for you.",
     description:
-      "Large agencies charge for scale most organizations don\u2019t need. We deliver the same caliber of expertise at a scale that fits, making serious research and analytics accessible to teams that don\u2019t have an enterprise budget.",
+      "Large agencies charge for scale most organizations don\u2019t need. We deliver the same caliber of expertise at a scale that fits, making serious research and consulting accessible to teams that don\u2019t have an enterprise budget.",
   },
   {
     title: "AI-enabled, pragmatically.",
@@ -185,19 +209,8 @@ export const whyResearchMind = [
   },
 ];
 
-export const recentEngagements = {
-  heading: "Recent engagements",
-  logos: [
-    { name: "ParentPay", src: "/logos/parentpay.svg" },
-    { name: "Red Bull", src: "/logos/redbull.png" },
-    { name: "Filiciti", src: "/logos/filiciti.png" },
-  ],
-  footnote:
-    "Our founders bring experience from Meta, TikTok, Microsoft, and Caltech, with PhDs in neuroscience and psychology. We\u2019ve helped teams across the US, EU, and UK grow, retain customers, and sharpen their strategy. Get in touch to see how we can help you.",
-};
-
 export const finalCta = {
   heading: "Let\u2019s talk about what you\u2019re trying to figure out.",
-  body: "Whether you\u2019re trying to grow, hold on to the customers you have, or figure out where to take your business next, we\u2019d love to hear what you\u2019re working on.",
+  body: "Tell us what you\u2019re working on and we\u2019ll tell you how we can help.",
   cta: { label: "Get in touch", href: "/contact" },
 };

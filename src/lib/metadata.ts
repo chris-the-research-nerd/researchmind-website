@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 
 export const siteMetadata: Metadata = {
   title:
-    "ResearchMind | Boutique research & analytics, powered by human insight and AI",
+    "ResearchMind | Research, strategy, and AI consulting",
   description:
-    "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence.",
+    "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
   openGraph: {
     title:
-      "ResearchMind | Boutique research & analytics, powered by human insight and AI",
+      "ResearchMind | Research, strategy, and AI consulting",
     description:
-      "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence.",
+      "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
     type: "website",
     locale: "en_US",
     siteName: "ResearchMind",
@@ -17,9 +17,9 @@ export const siteMetadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "ResearchMind | Boutique research & analytics, powered by human insight and AI",
+      "ResearchMind | Research, strategy, and AI consulting",
     description:
-      "We combine deep expertise in human behavior and AI to help teams understand their customers, work smarter, and act with confidence.",
+      "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
   },
   robots: {
     index: true,

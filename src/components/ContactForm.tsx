@@ -2,8 +2,13 @@
 
 import { useState } from "react";
 
-export function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
+// Paste the form ID from formspree.io (the part after /f/) to enable direct
+// submissions. While empty, the form opens the visitor's email app instead.
+const FORMSPREE_FORM_ID = "";
+const CONTACT_EMAIL = "info@researchmindconsulting.com";
+
+export function ContactForm({ topic, topics }: { topic?: string; topics?: string[] } = {}) {
+  const [submitted, setSubmitted] = useState<false | "sent" | "mailto">(false);
   const [error, setError] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -12,20 +17,46 @@ export function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
+    if (!FORMSPREE_FORM_ID) {
+      const t = data.get("topic");
+      const subject = `Website inquiry${t && t !== "Not sure yet" ? `: ${t}` : ""} from ${data.get("name")}`;
+      const body = `${t ? `Topic: ${t}\n\n` : ""}${data.get("message")}\n\n${data.get("name")}\n${data.get("email")}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      setSubmitted("mailto");
+      return;
+    }
+
     try {
-      const res = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
       });
       if (res.ok) {
-        setSubmitted(true);
+        setSubmitted("sent");
       } else {
         setError(true);
       }
     } catch {
       setError(true);
     }
+  }
+
+  if (submitted === "mailto") {
+    return (
+      <div className="py-16 text-center">
+        <p className="font-heading text-lg font-medium mb-2">Your email app should now be open.</p>
+        <p className="text-secondary text-base leading-[1.65]">
+          Just press send. If nothing opened, email us at{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline hover:text-accent">
+            {CONTACT_EMAIL}
+          </a>
+          .
+        </p>
+      </div>
+    );
   }
 
   if (submitted) {
@@ -63,6 +94,25 @@ export function ContactForm() {
           className="w-full border border-border bg-white px-4 py-3 text-sm rounded focus:outline-none focus:border-foreground focus:ring-1 focus:ring-foreground/10 transition-colors duration-200"
         />
       </div>
+      {topics ? (
+        <div>
+          <label htmlFor="topic" className="block text-sm font-medium mb-2">
+            What can we help with?
+          </label>
+          <select
+            id="topic"
+            name="topic"
+            defaultValue={topic}
+            className="w-full border border-border bg-white px-4 py-3 text-sm rounded focus:outline-none focus:border-foreground focus:ring-1 focus:ring-foreground/10 transition-colors duration-200"
+          >
+            {topics.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
+      ) : null}
       <div>
         <label htmlFor="message" className="block text-sm font-medium mb-2">
           How can we help?
@@ -77,7 +127,11 @@ export function ContactForm() {
       </div>
       {error && (
         <p className="text-sm text-red-600">
-          Something went wrong. Please try again or email us directly.
+          Something went wrong. Please try again or email us at{" "}
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
+            {CONTACT_EMAIL}
+          </a>
+          .
         </p>
       )}
       <button

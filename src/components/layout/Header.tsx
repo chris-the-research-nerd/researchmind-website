@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navLinks = [
-  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Our Team", href: "/team" },
   { label: "Contact", href: "/contact" },
@@ -27,30 +26,19 @@ export function Header() {
             priority
           />
         </Link>
-        <nav
-          className="hidden md:flex absolute right-14 top-1/2 items-center gap-8 bg-white pr-3 whitespace-nowrap transition-[transform,opacity] duration-300 ease-out"
-          style={{
-            transform: mobileOpen
-              ? "translateY(-50%) translateX(0)"
-              : "translateY(-50%) translateX(120%)",
-            opacity: mobileOpen ? 1 : 0,
-            pointerEvents: mobileOpen ? "auto" : "none",
-          }}
-          aria-hidden={!mobileOpen}
-        >
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className="text-sm text-secondary hover:text-foreground transition-colors duration-200"
-              onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
         </nav>
         <button
-          className="relative z-50 p-2 -mr-2"
+          className="md:hidden relative z-50 p-2 -mr-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >

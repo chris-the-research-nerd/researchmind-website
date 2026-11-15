@@ -14,7 +14,10 @@ export function Footer() {
             className="h-9 w-auto"
           />
         </Link>
-        <div className="flex items-center gap-6 text-sm text-secondary">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-secondary">
+          <Link href="/agents" className="hover:text-foreground transition-colors duration-200">
+            For AI assistants
+          </Link>
           <a
             href="mailto:info@researchmindconsulting.com"
             className="hover:text-foreground transition-colors duration-200"

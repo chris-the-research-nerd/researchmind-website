@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { team, partners } from "@/content/team";
 
 export const metadata: Metadata = {
   title: "Our Team | ResearchMind",
@@ -10,40 +11,16 @@ export const metadata: Metadata = {
     "Meet the ResearchMind team. PhDs in neuroscience, decades of experience at companies like TikTok, Meta, Microsoft, and Red Bull.",
 };
 
-const team = [
-  {
-    name: "Tanaz Molapour, Ph.D.",
-    role: "Founder & CEO | Principal Researcher",
-    photo: "/images/tanaz.webp",
-    bio: "Tanaz founded ResearchMind in 2020 with one simple goal: help businesses get clear answers to the questions that matter for their success. With training in psychology and neuroscience (Karolinska Institutet, Caltech), her methodological rigor shapes every stage of the work, from how questions are framed and data is collected, to how findings are analyzed and translated into impact. Today, she leads research, strategy, and AI-enablement engagements for dozens of organizations across the US, EU, and UK.",
-  },
-  {
-    name: "Chris Berger, Ph.D.",
-    role: "Co-Founder | Principal Researcher",
-    photo: "/images/chris.webp",
-    bio: "Chris leads ResearchMind\u2019s quantitative and analytics work. He spent over a decade in research and analytics leadership at TikTok, Meta, and Microsoft.",
-  },
-  {
-    name: "Agnes Tongur, M.S.",
-    role: "Principal Researcher",
-    photo: "/images/agnes.webp",
-    bio: "Agnes specializes in applied research for educational providers, governments, and international organizations, with 15+ years turning complex data into clear decisions.",
-  },
-];
+
 
 export default function TeamPage() {
   return (
     <Section>
       <Container>
         <FadeIn>
-          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-6">
+          <h1 className="font-heading text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] mb-16">
             Our team
           </h1>
-          <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-16">
-            A small, senior team with deep roots in behavioral science,
-            neuroscience, and AI. Every project gets direct attention from the
-            people doing the thinking.
-          </p>
         </FadeIn>
         <div className="space-y-16 max-w-[800px]">
           {team.map((member, i) => (
@@ -75,6 +52,54 @@ export default function TeamPage() {
             </FadeIn>
           ))}
         </div>
+
+        <section className="mt-24 border-t border-border pt-14">
+          <FadeIn>
+            <h2 className="font-heading text-3xl md:text-4xl font-medium tracking-tight leading-[1.1] mb-4">
+              Partners
+            </h2>
+            <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-12">
+              Good company makes good work.
+            </p>
+          </FadeIn>
+          <div className="space-y-14 max-w-[800px]">
+            {partners.map((member, i) => (
+              <FadeIn key={member.name} delay={i * 100}>
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+                  <div className="w-32 md:w-40 shrink-0">
+                    <div className="w-full aspect-square overflow-hidden rounded-full bg-muted">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover object-top grayscale hover:grayscale-0 transition-all duration-500"
+                      />
+                    </div>
+                    {member.photoCredit ? (
+                      <p className="text-[11px] text-secondary mt-2 text-center">{member.photoCredit}</p>
+                    ) : null}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading text-xl font-semibold">{member.name}</h3>
+                    <p className="text-accent text-sm font-medium mt-1">
+                      {member.title},{" "}
+                      <a
+                        href={member.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-2 hover:text-foreground"
+                      >
+                        {member.org}
+                      </a>
+                    </p>
+                    <p className="text-secondary text-base leading-[1.65] mt-4">{member.bio}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
       </Container>
     </Section>
   );

@@ -1,16 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { rollingQuestions, services, whatWeDo } from "@/content/home";
+import { rollingQuestions, practices, whatWeDo } from "@/content/home";
 
-// Homepage paragraph: the 6 cross-cutting questions plus one strongest pick per service.
+// Homepage paragraph: the cross-cutting questions plus each practice's questions.
 const ALL_QUESTIONS: string[] = [
   ...rollingQuestions,
-  services[0].questions[1], // Qualitative
-  services[1].questions[0], // Quantitative
-  services[2].questions[1], // Advanced Analytics
-  services[3].questions[2], // Market & Brand Strategy
-  services[4].questions[0], // AI Workflow Enablement
+  ...practices.flatMap((p) => p.questions),
 ];
 
 function seededShuffle<T>(array: T[], seed: number): T[] {
@@ -30,11 +26,14 @@ const REVEAL_ORDER: number[] = seededShuffle(
 );
 
 // Progress phases:
-//   0 .. REVEAL_END           : sentences fade in one by one
-//   REVEAL_END .. FADE_END    : paragraph fades out, WhatWeDo fades in
-//   FADE_END .. 1             : hold on WhatWeDo
+//   0 .. REVEAL_END        : sentences fade in one by one
+//   REVEAL_END .. TAGLINE_END : questions drift up + fade; tagline emerges (the punchline)
+//   TAGLINE_END .. BODY_END   : body paragraphs fade in below tagline
+//   BODY_END .. 1          : hold
 const REVEAL_END = 0.55;
-const FADE_END = 0.75;
+const TAGLINE_END = 0.72;
+const BODY_END = 0.85;
+const FADE_END = TAGLINE_END; // for the question paragraph fade-out
 const SENTENCE_FADE_WINDOW = 0.05;
 
 // Color fade: paragraph starts dark gray, drifts to lighter gray as questions accumulate.
@@ -77,13 +76,31 @@ export function ScrollQuestions() {
         ? 0
         : 1 - (progress - REVEAL_END) / (FADE_END - REVEAL_END);
 
-  // WhatWeDo opacity: 0 until REVEAL_END, fades to 1 by FADE_END, holds.
-  const whatWeDoOpacity =
+  // Tagline emerges first (the punchline), then body paragraphs fill in below.
+  const taglineOpacity =
+    progress < REVEAL_END
+      ? 0
+      : progress > TAGLINE_END
+        ? 1
+        : (progress - REVEAL_END) / (TAGLINE_END - REVEAL_END);
+
+  // Subtle scale-up on tagline as it emerges (0.92 -> 1.0).
+  const taglineScale = 0.92 + taglineOpacity * 0.08;
+
+  const bodyOpacity =
+    progress < TAGLINE_END - 0.04 // body starts just before tagline finishes
+      ? 0
+      : progress > BODY_END
+        ? 1
+        : (progress - (TAGLINE_END - 0.04)) / (BODY_END - (TAGLINE_END - 0.04));
+
+  // Question paragraph drifts up a little as it fades out (up to -2rem).
+  const paragraphLift =
     progress < REVEAL_END
       ? 0
       : progress > FADE_END
-        ? 1
-        : (progress - REVEAL_END) / (FADE_END - REVEAL_END);
+        ? 32
+        : ((progress - REVEAL_END) / (FADE_END - REVEAL_END)) * 32;
 
   return (
     <section
@@ -93,22 +110,36 @@ export function ScrollQuestions() {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* WhatWeDo behind */}
-        <div
-          className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none"
-          style={{
-            opacity: whatWeDoOpacity,
-            transition: "opacity 220ms ease-out",
-          }}
-        >
+        <div className="absolute inset-0 flex items-center justify-center px-6 pointer-events-none">
           <div className="max-w-[720px] mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight">
+            <h2
+              className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 leading-tight"
+              style={{
+                opacity: taglineOpacity,
+                transform: `scale(${taglineScale})`,
+                transformOrigin: "left center",
+                transition: "opacity 240ms ease-out, transform 240ms ease-out",
+              }}
+            >
               {whatWeDo.taglineBefore}
               <span className="text-accent">{whatWeDo.taglineAccent}</span>
             </h2>
-            <p className="text-foreground text-xl md:text-[1.375rem] leading-[1.6] mb-6">
+            <p
+              className="text-foreground text-xl md:text-[1.375rem] leading-[1.6] mb-6"
+              style={{
+                opacity: bodyOpacity,
+                transition: "opacity 240ms ease-out",
+              }}
+            >
               {whatWeDo.paragraphs[0]}
             </p>
-            <p className="text-secondary text-lg leading-[1.65]">
+            <p
+              className="text-secondary text-lg leading-[1.65]"
+              style={{
+                opacity: bodyOpacity,
+                transition: "opacity 240ms ease-out",
+              }}
+            >
               {whatWeDo.paragraphs[1]}
             </p>
           </div>
@@ -128,7 +159,9 @@ export function ScrollQuestions() {
                 return `rgb(${v}, ${v}, ${v})`;
               })(),
               opacity: paragraphOpacity,
-              transition: "opacity 240ms ease-out, color 240ms ease-out",
+              transform: `translateY(-${paragraphLift}px)`,
+              transition:
+                "opacity 240ms ease-out, color 240ms ease-out, transform 240ms ease-out",
               textAlignLast: "left",
               hyphens: "manual",
             }}
