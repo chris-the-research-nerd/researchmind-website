@@ -30,7 +30,6 @@ export function Hero() {
                     {line}
                   </span>
                 ))}
-                <span className="block text-accent">{hero.accentLine}</span>
               </h1>
             </FadeIn>
             <FadeIn delay={100}>

@@ -2,8 +2,7 @@
 // Research & Strategy, AI Solutions (with Caritas), AI Visibility / AEO (with LA TechSpace).
 
 export const hero = {
-  lines: ["Understand your customers.", "Get real value from AI."],
-  accentLine: "Get found in AI search.",
+  lines: ["Understand your customers.", "Get real value from AI.", "Get found in AI search."],
   subline:
     "ResearchMind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
   primaryCta: { label: "Get in touch", href: "/contact" },
@@ -210,7 +209,7 @@ export const whyResearchMind = [
 ];
 
 export const finalCta = {
-  heading: "Let\u2019s talk about what you\u2019re trying to figure out.",
+  heading: "Let\u2019s talk about what you need.",
   body: "Tell us what you\u2019re working on and we\u2019ll tell you how we can help.",
   cta: { label: "Get in touch", href: "/contact" },
 };
