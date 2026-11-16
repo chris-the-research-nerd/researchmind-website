@@ -27,7 +27,7 @@ export const partners = [
     org: "LA TechSpace",
     url: "https://latechspace.com/",
     photo: "/images/nana.webp",
-    photoCredit: "Photo courtesy of LA TechSpace",
+    photoCredit: "",
     bio: "Nana is a partner at LA TechSpace in Los Angeles. She studied industrial engineering at UC Berkeley and holds a master’s from USC’s Iovine and Young Academy. We work together on AEO and GEO.",
   },
   {
