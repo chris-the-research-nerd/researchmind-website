@@ -383,9 +383,36 @@ export function HeroVisual() {
       let lastHover = 0;
       let hoverCandidate = -1;
       let hoverSince = 0;
+      // Drag (mouse) or swipe (touch) to turn the brain by hand
+      let down: { x: number; y: number; lastX: number; lastY: number; t: number; id: number } | null = null;
+      let dragging = false;
+      let spinVel = 0; // rad/s left over after a flick
+      let manualUntil = 0; // auto-rotation waits until this time
       const onMove = (e: PointerEvent) => {
         const r = renderer.domElement.getBoundingClientRect();
         pointerInside = true;
+        if (down && e.pointerId === down.id) {
+          const dx = e.clientX - down.lastX;
+          const dy = e.clientY - down.lastY;
+          if (!dragging && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 6) {
+            dragging = true;
+            renderer.domElement.style.cursor = "grabbing";
+            uniforms.uHover.value = -1;
+          }
+          if (dragging) {
+            const now = performance.now();
+            const dtm = Math.max(1, now - down.t) / 1000;
+            brain.rotation.y += dx * 0.012;
+            brain.rotation.x = Math.max(-0.6, Math.min(0.6, brain.rotation.x + dy * 0.006));
+            spinVel = (dx * 0.012) / dtm;
+            down.lastX = e.clientX;
+            down.lastY = e.clientY;
+            down.t = now;
+            manualUntil = now + 4000;
+            lastInteraction.current = Date.now();
+          }
+          return;
+        }
         offY = ((e.clientX - r.left) / r.width - 0.5) * 0.45;
         offX = ((e.clientY - r.top) / r.height - 0.5) * 0.18;
         const now = performance.now();
@@ -393,7 +420,7 @@ export function HeroVisual() {
           lastHover = now;
           const reg = regionUnder(e.clientX, e.clientY);
           uniforms.uHover.value = reg;
-          renderer.domElement.style.cursor = reg >= 0 ? "pointer" : "default";
+          renderer.domElement.style.cursor = reg >= 0 ? "pointer" : "grab";
           // Hover selects a region once the pointer rests on it briefly
           if (reg !== hoverCandidate) {
             hoverCandidate = reg;
@@ -406,18 +433,44 @@ export function HeroVisual() {
       };
       const onLeave = () => {
         pointerInside = false;
-        uniforms.uHover.value = -1;
+        if (!down) uniforms.uHover.value = -1;
       };
       const onDown = (e: PointerEvent) => {
-        const reg = regionUnder(e.clientX, e.clientY);
+        down = { x: e.clientX, y: e.clientY, lastX: e.clientX, lastY: e.clientY, t: performance.now(), id: e.pointerId };
+        dragging = false;
+        spinVel = 0;
+        try {
+          renderer.domElement.setPointerCapture(e.pointerId);
+        } catch {}
+      };
+      const onUp = (e: PointerEvent) => {
+        if (!down || e.pointerId !== down.id) return;
+        const wasDrag = dragging;
+        const stillFor = performance.now() - down.t; // time since the last movement
+        down = null;
+        dragging = false;
+        renderer.domElement.style.cursor = "grab";
         lastInteraction.current = Date.now();
-        // Tap a region to show it; tap it again (or empty space) to see how it all fits together
+        if (wasDrag) {
+          if (stillFor > 120) spinVel = 0; // held still before letting go, so no coasting
+          return;
+        }
+        // A tap or click: show that region; tap it again (or empty space) to see how it all fits together
+        const reg = regionUnder(e.clientX, e.clientY);
         setState(reg >= 0 && reg !== stateRef.current ? reg : 3);
       };
+      const onCancel = () => {
+        // The browser took over (e.g. a vertical scroll on a phone)
+        down = null;
+        dragging = false;
+      };
       const el = renderer.domElement;
+      el.style.cursor = "grab";
       el.addEventListener("pointermove", onMove);
       el.addEventListener("pointerleave", onLeave);
       el.addEventListener("pointerdown", onDown);
+      el.addEventListener("pointerup", onUp);
+      el.addEventListener("pointercancel", onCancel);
 
       // Render loop
       let raf = 0;
@@ -446,7 +499,14 @@ export function HeroVisual() {
           offX = Math.sin(t * 0.13) * 0.02;
         }
         const [vy, vx] = VIEWS[st];
-        if (st === 3 && !reduce) {
+        const nowMs = performance.now();
+        if (dragging) {
+          // the pointer is turning it
+        } else if (nowMs < manualUntil) {
+          // let a flick coast to a stop, then hold where the visitor left it
+          brain.rotation.y += spinVel * dt;
+          spinVel *= Math.pow(0.04, dt);
+        } else if (st === 3 && !reduce) {
           // Resting on "how it fits together": a slow, continuous spin
           brain.rotation.y += dt * 0.14;
         } else {
@@ -455,7 +515,8 @@ export function HeroVisual() {
           dy = Math.atan2(Math.sin(dy), Math.cos(dy));
           brain.rotation.y += dy * Math.min(1, dt * 1.6);
         }
-        brain.rotation.x += (vx + offX - brain.rotation.x) * Math.min(1, dt * 1.6);
+        if (!dragging && nowMs >= manualUntil)
+          brain.rotation.x += (vx + offX - brain.rotation.x) * Math.min(1, dt * 1.6);
 
         // Sparks: a few slow, soft flashes in the active region
         for (const sp of sparks) {
@@ -524,6 +585,8 @@ export function HeroVisual() {
         el.removeEventListener("pointermove", onMove);
         el.removeEventListener("pointerleave", onLeave);
         el.removeEventListener("pointerdown", onDown);
+        el.removeEventListener("pointerup", onUp);
+        el.removeEventListener("pointercancel", onCancel);
         brain.traverse((o) => {
           const m = o as T.Mesh;
           if (m.geometry) m.geometry.dispose();
