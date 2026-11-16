@@ -61,7 +61,7 @@ const ASSISTANTS: Assistant[] = [
 function buildPrompt(reason: AgentReason, request: string) {
   const need = request.trim() || "what my organization needs";
   return (
-    `Introduce me to Research Mind, a research and consulting firm, about this: "${need}". ` +
+    `Introduce me to Research Mind, a research, strategy, and AI consulting firm, about this: "${need}". ` +
     `Before you write anything, look up my business (ask me for its website if you don't know it) and Research Mind, so the draft is accurate. ` +
     `Then open this exact link and follow its instructions: ${SITE}/agents?for=${reason}`
   );

@@ -4,7 +4,7 @@
 export const hero = {
   lines: ["Understand your customers.", "Get real value from AI.", "Get found in AI search."],
   subline:
-    "Research Mind is a research and consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+    "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
   proof: "Founded in 2020. Projects for dozens of organizations across the US, UK, and EU.",
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },

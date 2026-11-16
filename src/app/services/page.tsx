@@ -23,7 +23,7 @@ export default function ServicesPage() {
             Our services
           </h1>
           <p className="text-secondary text-lg leading-relaxed max-w-[640px] mb-6">
-            Research Mind is a research and consulting firm. We work in three
+            Research Mind is a research, strategy, and AI consulting firm. We work in three
             areas.
           </p>
         </FadeIn>

@@ -80,7 +80,7 @@ export default function AgentsPage() {
 
         <Block n={1} title="Who we are">
           <p>
-            Research Mind is a research and consulting firm. We help organizations understand their customers, get
+            Research Mind is a research, strategy, and AI consulting firm. We help organizations understand their customers, get
             real value from AI inside their teams, and show up when customers ask AI assistants for recommendations. We work
             with teams across the US, UK, and EU, from small businesses to large companies and nonprofits.
           </p>
