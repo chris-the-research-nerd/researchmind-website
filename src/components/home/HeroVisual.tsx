@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import type * as T from "three";
 import { practices } from "@/content/home";
@@ -606,6 +607,14 @@ export function HeroVisual() {
     };
   }, []);
 
+  const router = useRouter();
+  // Clicking a selected service label opens its section on the services page.
+  // On desktop hover already selects it, so one click navigates; on touch the
+  // first tap selects and shows the list, the second tap navigates.
+  const openService = (i: number) => {
+    if (state === i) router.push(`/services#${practices[i].id}`);
+    else pick(i);
+  };
   const pick = (i: number) => {
     lastInteraction.current = Date.now();
     window.clearTimeout(returnTimer.current);
@@ -652,7 +661,7 @@ export function HeroVisual() {
                   }`}
                 />
                 <button
-                  onClick={() => pick(i)}
+                  onClick={() => openService(i)}
                   onMouseEnter={() => pick(i)}
                   className={`pointer-events-auto absolute text-left rounded-lg border bg-white/90 backdrop-blur-sm px-2.5 py-1.5 shadow-sm whitespace-nowrap transition-colors ${
                     open ? "border-accent/50" : "border-border hover:border-secondary/50"
@@ -674,6 +683,7 @@ export function HeroVisual() {
                           {item.name}
                         </li>
                       ))}
+                      <li className="pt-0.5 text-[11px] font-medium text-accent">See details →</li>
                     </ul>
                   ) : null}
                 </button>
