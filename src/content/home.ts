@@ -18,6 +18,7 @@ export const clientsAndPartners = {
     { name: "ParentPay", src: "/logos/parentpay.svg", url: "https://www.parentpay.com/" },
     { name: "Red Bull", src: "/logos/redbull.png", url: "https://www.redbullmediahouse.com/" },
     { name: "Noomo", src: "/logos/noomo.png", url: "https://noomoagency.com/" },
+    { name: "Bare Stockholm", src: "/logos/bare.png", url: "https://barestockholm.com/" },
     { name: "Caritas", src: "/logos/caritas.png", url: "https://caritas.ventures/" },
     { name: "LA TechSpace", src: "/logos/latechspace.png", url: "https://latechspace.com/" },
   ] as Logo[],
