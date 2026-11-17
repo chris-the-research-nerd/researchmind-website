@@ -4,7 +4,7 @@ import { useState } from "react";
 
 // Paste the form ID from formspree.io (the part after /f/) to enable direct
 // submissions. While empty, the form opens the visitor's email app instead.
-const FORMSPREE_FORM_ID = "";
+const FORMSPREE_FORM_ID = "xnpddqva";
 const CONTACT_EMAIL = "info@researchmindconsulting.com";
 
 export function ContactForm({ topic, topics }: { topic?: string; topics?: string[] } = {}) {
