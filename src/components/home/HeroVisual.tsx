@@ -741,7 +741,7 @@ export function HeroVisual() {
           role="img"
           aria-label="Interactive 3D brain. Different regions light up for research and strategy, AI solutions, and AI visibility."
         />
-        <div ref={labelsWrapRef} className="pointer-events-none absolute inset-0 hidden lg:block">
+        <div ref={labelsWrapRef} className="pointer-events-none absolute inset-0">
           {practices.map((pr, i) => {
             const on = i === state || state === 3;
             const open = i === state;
@@ -761,11 +761,11 @@ export function HeroVisual() {
                 <button
                   onClick={() => openService(i)}
                   onMouseEnter={() => pick(i)}
-                  className={`pointer-events-auto absolute text-left rounded-lg border bg-white/90 backdrop-blur-sm px-3 py-2 shadow-sm whitespace-nowrap transition-colors ${
+                  className={`pointer-events-auto absolute text-left rounded-lg border bg-white/90 backdrop-blur-sm px-2 py-1.5 sm:px-3 sm:py-2 shadow-sm whitespace-nowrap transition-colors ${
                     open ? "border-accent/50" : "border-border hover:border-secondary/50"
                   }`}
                 >
-                  <span className={`block text-sm md:text-[15px] font-semibold ${on ? "text-accent" : "text-foreground"}`}>
+                  <span className={`block text-xs sm:text-sm md:text-[15px] font-semibold ${on ? "text-accent" : "text-foreground"}`}>
                     {pr.titleBefore}
                     {pr.titleAccent}
                     {pr.titleAfter}
@@ -775,13 +775,13 @@ export function HeroVisual() {
                       {pr.included.map((item, k) => (
                         <li
                           key={item.name}
-                          className="hero-chip text-[13px] text-secondary"
+                          className="hero-chip text-[11px] sm:text-[13px] text-secondary"
                           style={{ animationDelay: `${k * 70}ms` }}
                         >
                           {item.name}
                         </li>
                       ))}
-                      <li className="pt-0.5 text-[13px] font-medium text-accent">See details →</li>
+                      <li className="pt-0.5 text-[11px] sm:text-[13px] font-medium text-accent">See details →</li>
                     </ul>
                   ) : null}
                 </button>
