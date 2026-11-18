@@ -50,8 +50,9 @@ export function LogoCarousel({ logos }: LogoCarouselProps) {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10" />
 
+      {/* Pauses on hover so a click lands on the logo you aimed at */}
       <div
-        className="flex w-max"
+        className="flex w-max hover:[animation-play-state:paused]"
         style={{
           animation: "scroll 75s linear infinite",
         }}

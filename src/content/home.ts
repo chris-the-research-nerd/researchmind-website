@@ -2,9 +2,9 @@
 // Research & Strategy, AI Solutions (with Caritas), AI Visibility / AEO (with LA TechSpace).
 
 export const hero = {
-  lines: ["Understand your customers.", "Get real value from AI.", "Get found in AI search."],
+  lines: ["Understand your customers.", "Get real value from AI.", "Shape what AI says about you."],
   subline:
-    "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+    "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and shape what ChatGPT and other AI assistants say about your brand.",
   proof: "Founded in 2020. Projects for dozens of organizations across the US, UK, and EU.",
   primaryCta: { label: "Get in touch", href: "/contact" },
   secondaryCta: { label: "See our services", href: "/services" },
@@ -132,18 +132,23 @@ export const practices: Practice[] = [
     agentReason: "visibility",
     titleBefore: "",
     titleAccent: "AI",
-    titleAfter: " Visibility (AEO)",
+    titleAfter: " Narrative & Visibility",
     icon: "Search",
-    hook: "When customers ask ChatGPT about products or services like yours, do you come up?",
+    hook: "When customers ask AI about you, what does it say?",
     summary:
-      "We check what ChatGPT, Gemini, and other AI assistants say about your business, then fix what they get wrong or leave out.",
-    alsoCalled: "You may have heard this called AEO, short for answer engine optimization.",
+      "AI is now where many customers first hear about you. We shape what ChatGPT, Gemini, and other AI assistants tell them: we check what they say now, fix what’s wrong, and keep your story consistent across your website, reviews, directories, press, and social.",
+    alsoCalled: "You may have heard this called AEO (answer engine optimization) or GEO (generative engine optimization).",
     forWhen: [
       "Your customers use ChatGPT or other AI assistants to find businesses like yours",
       "AI gives wrong or outdated information about you",
       "AI recommends your competitors and not you",
     ],
     included: [
+      {
+        name: "Your AI narrative",
+        description:
+          "We decide with you how AI should describe your brand, then make your website, profiles, reviews, and press tell that same story, so AI repeats it.",
+      },
       {
         name: "Get recommended",
         description:
@@ -167,6 +172,7 @@ export const practices: Practice[] = [
     questions: [
       "Does ChatGPT recommend us or our competitors?",
       "What do AI tools say about our business?",
+      "How does AI describe our brand compared with competitors?",
     ],
   },
 ];

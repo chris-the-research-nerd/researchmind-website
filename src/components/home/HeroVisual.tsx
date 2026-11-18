@@ -22,7 +22,7 @@ const LABEL_EXTENDS: ("left" | "right")[] = ["left", "left", "right"];
 
 const TOGETHER = {
   eyebrow: "How it fits together",
-  text: "Research tells you what customers need and what to fix first. AI helps your team deliver it faster. AI visibility brings new customers to you when they ask AI.",
+  text: "Research tells you what customers need and what to fix first. AI helps your team deliver it faster. AI visibility shapes what AI tells your future customers about you.",
 };
 
 export function HeroVisual() {
@@ -32,6 +32,8 @@ export function HeroVisual() {
   const returnTimer = useRef<number | undefined>(undefined);
   const lastInteraction = useRef(0);
   const labelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const labelsWrapRef = useRef<HTMLDivElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     stateRef.current = state;
@@ -84,8 +86,8 @@ export function HeroVisual() {
       scene.add(rim);
 
       const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 50);
-      camera.position.set(0, 0.2, 4.6);
-      camera.lookAt(0, -0.12, 0);
+      camera.position.set(0, 0.2, small ? 4.6 : 4.5);
+      camera.lookAt(0, small ? -0.12 : 0.02, 0);
 
       const brain = new THREE.Group();
       scene.add(brain);
@@ -288,9 +290,11 @@ export function HeroVisual() {
       glowCanvas.width = glowCanvas.height = 64;
       const gctx = glowCanvas.getContext("2d")!;
       const grad = gctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-      grad.addColorStop(0, "rgba(255,170,170,1)");
-      grad.addColorStop(0.35, "rgba(200,70,70,0.6)");
-      grad.addColorStop(1, "rgba(180,58,58,0)");
+      // Normal blending: additive light disappears against the white page
+      grad.addColorStop(0, "rgba(235,70,60,1)");
+      grad.addColorStop(0.22, "rgba(205,40,40,0.85)");
+      grad.addColorStop(0.5, "rgba(190,40,40,0.18)");
+      grad.addColorStop(1, "rgba(180,40,40,0)");
       gctx.fillStyle = grad;
       gctx.fillRect(0, 0, 64, 64);
       const glowTex = new THREE.CanvasTexture(glowCanvas);
@@ -300,7 +304,7 @@ export function HeroVisual() {
           transparent: true,
           depthWrite: false,
           depthTest: false,
-          blending: THREE.AdditiveBlending,
+          blending: THREE.NormalBlending,
           opacity: 0,
         });
         const s = new THREE.Sprite(m);
@@ -317,7 +321,10 @@ export function HeroVisual() {
         new THREE.Vector3(0.5, -0.56, 0),
         new THREE.Vector3(0.8, 0.44, 0),
       ];
-      const curves = [
+      // One slow stream of light that travels round the three regions in turn:
+      // research -> AI solutions -> AI visibility -> research.
+      const centre = new THREE.Vector3(0.1, 0, 0);
+      const legs = [
         [0, 1],
         [1, 2],
         [2, 0],
@@ -325,32 +332,66 @@ export function HeroVisual() {
         const A = anchors[a];
         const B = anchors[b];
         const mid = A.clone().add(B).multiplyScalar(0.5);
-        // bow outward from the centre of the brain
-        mid.add(mid.clone().sub(new THREE.Vector3(0.1, 0, 0)).normalize().multiplyScalar(0.3));
-        return new THREE.QuadraticBezierCurve3(A, mid, B);
+        mid.add(mid.clone().sub(centre).normalize().multiplyScalar(0.3));
+        return new THREE.QuadraticBezierCurve3(A.clone(), mid, B.clone());
       });
-      const lineMat = new THREE.LineBasicMaterial({ color: 0xb33a3a, transparent: true, opacity: 0, depthTest: false });
-      const lines = curves.map((c) => {
+      const lineMat = new THREE.LineBasicMaterial({ color: 0xc23b3b, transparent: true, opacity: 0, depthTest: false });
+      const lines = legs.map((c) => {
         const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints(c.getPoints(48)), lineMat);
         brain.add(l);
         return l;
       });
-      const signals = curves.map((_, i) => ({ s: makeSprite(), t: i / 3 }));
+      // position along the loop: 0..3, one unit per leg
+      const loopPoint = (u: number, out: T.Vector3) => {
+        const v = ((u % 3) + 3) % 3;
+        const leg = Math.floor(v);
+        return out.copy(legs[leg].getPoint(v - leg));
+      };
+      const TAIL = 18;
+      const stream = {
+        u: 0,
+        parts: Array.from({ length: TAIL }, (_, j) => {
+          const sp = makeSprite();
+          sp.scale.setScalar(0.06 * (1 - (0.7 * j) / TAIL));
+          return sp;
+        }),
+      };
+      // A soft pulsing glow on each region's node
+      const nodes = anchors.map((a) => {
+        const n = makeSprite();
+        n.position.copy(a);
+        n.scale.setScalar(0.14);
+        return n;
+      });
+
+      // Radius that encloses the brain as it turns (tuned by eye, incl. scale)
+      const fitRadius = 1.12;
 
       // Layout
       let vw = mount.clientWidth;
       let vh = mount.clientHeight;
       let mountLeft = mount.getBoundingClientRect().left;
+      let textRight = mountLeft - 16;
       const resize = () => {
         const w = mount.clientWidth;
         const h = mount.clientHeight;
         vw = w;
         vh = h;
         mountLeft = mount.getBoundingClientRect().left;
+        const txt = document.querySelector("[data-hero-text] h1");
+        textRight = txt && window.innerWidth >= 1024 ? txt.getBoundingClientRect().right : mountLeft - 16;
         renderer.setSize(w, h, false);
         renderer.domElement.style.width = `${w}px`;
         renderer.domElement.style.height = `${h}px`;
         camera.aspect = w / h;
+        // Fit the whole brain (as it turns) inside the frame at any size:
+        // back the camera off until its bounding sphere clears the tighter of
+        // the vertical and horizontal field of view.
+        const half = THREE.MathUtils.degToRad(camera.fov / 2);
+        const hHalf = Math.atan(Math.tan(half) * camera.aspect);
+        const dist = fitRadius / Math.sin(Math.min(half, hHalf));
+        camera.position.set(0, 0.15, dist);
+        camera.lookAt(0, 0.02, 0);
         camera.updateProjectionMatrix();
       };
       resize();
@@ -478,11 +519,45 @@ export function HeroVisual() {
       let shown = stateRef.current;
       const tmp = new THREE.Vector3();
       const clock = new THREE.Clock();
+      const section = mount.closest("[data-hero-scroll]") as HTMLElement | null;
+      let reveal = 1;
       const loop = () => {
         const dt = Math.min(clock.getDelta(), 0.05);
         const t = clock.elapsedTime;
         uniforms.uTime.value = reduce ? 0 : t;
         const st = stateRef.current;
+
+        // Scroll progress through the tall hero (desktop only): 0 = brain
+        // full screen behind the headline, 1 = brain on the right with its
+        // labels and the panel showing.
+        let target = 1;
+        if (section && window.innerWidth >= 1024) {
+          const travel = section.offsetHeight - window.innerHeight;
+          target = travel > 0 ? Math.min(1, Math.max(0, -section.getBoundingClientRect().top / (travel * 0.75))) : 1;
+        }
+        reveal = reduce ? target : reveal + (target - reveal) * Math.min(1, dt * 6);
+        const ease = reveal * reveal * (3 - 2 * reveal);
+        if (window.innerWidth >= 1024) {
+          const halfW = camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect;
+          brain.position.x = ease * Math.min(halfW * 0.42, 2.2);
+          brain.position.y = ease * 0.1;
+          brain.scale.setScalar(1.15 * (1 - 0.3 * ease));
+        } else {
+          brain.position.set(0, 0, 0);
+          brain.scale.setScalar(1.15);
+        }
+        const lw = labelsWrapRef.current;
+        if (lw) {
+          const o = Math.max(0, (ease - 0.55) / 0.45);
+          lw.style.opacity = String(o);
+          lw.style.visibility = o < 0.02 ? "hidden" : "visible";
+        }
+        const pn = panelRef.current;
+        if (pn) {
+          const o = window.innerWidth >= 1024 ? Math.max(0, (ease - 0.6) / 0.4) : 1;
+          pn.style.opacity = String(o);
+          pn.style.pointerEvents = o < 0.5 ? "none" : "";
+        }
 
         if (st !== shown) {
           uniforms.uPrev.value = shown < 3 ? shown : -9;
@@ -493,7 +568,7 @@ export function HeroVisual() {
         uniforms.uMix.value = Math.min(1, uniforms.uMix.value + dt * 1.2);
         const together = st === 3 ? 1 : 0;
         uniforms.uAll.value += (together - uniforms.uAll.value) * Math.min(1, dt * 2);
-        lineMat.opacity += (together * 0.4 - lineMat.opacity) * Math.min(1, dt * 2);
+        lineMat.opacity += (0.06 + together * 0.14 - lineMat.opacity) * Math.min(1, dt * 2);
 
         if (!pointerInside && !reduce) {
           offY = Math.sin(t * 0.18) * 0.12;
@@ -533,11 +608,18 @@ export function HeroVisual() {
           }
           (sp.s.material as T.SpriteMaterial).opacity = Math.sin(sp.life * Math.PI) * 0.55;
         }
-        // Signals travelling along the connections
-        signals.forEach((sg, i) => {
-          sg.t = (sg.t + dt * 0.12) % 1;
-          sg.s.position.copy(curves[i].getPoint(sg.t));
-          (sg.s.material as T.SpriteMaterial).opacity = reduce ? 0 : uniforms.uAll.value * 0.85;
+        // The stream: one slow packet with a fading tail going round the loop
+        const tNow = nowMs / 1000;
+        stream.u += dt * 0.12;
+        stream.parts.forEach((sp, j) => {
+          loopPoint(stream.u - j * 0.012, sp.position);
+          (sp.material as T.SpriteMaterial).opacity = reduce ? 0 : 0.85 * (1 - j / TAIL);
+        });
+        nodes.forEach((n, i) => {
+          const on = st === 3 || st === i ? 1 : 0.35;
+          const pulse = 0.75 + 0.25 * Math.sin(tNow * 1.1 + i * 2.1);
+          (n.material as T.SpriteMaterial).opacity = reduce ? 0.5 * on : on * pulse * 0.9;
+          n.scale.setScalar(0.11 + 0.04 * pulse * on);
         });
         lines.forEach((l) => (l.visible = lineMat.opacity > 0.01));
 
@@ -560,7 +642,7 @@ export function HeroVisual() {
           const pageX = mountLeft + lx;
           let dir = LABEL_EXTENDS[i];
           if (dir === "right" && pageX + 10 + bw > window.innerWidth - 8) dir = "left";
-          else if (dir === "left" && pageX - 10 - bw < Math.max(8, mountLeft - 16)) dir = "right"; // never over the headline
+          else if (dir === "left" && pageX - 10 - bw < Math.max(8, textRight)) dir = "right"; // never over the headline
           btn.style.left = dir === "right" ? "10px" : "";
           btn.style.right = dir === "left" ? "10px" : "";
           let below = i === 1;
@@ -628,12 +710,9 @@ export function HeroVisual() {
   const p = state < 3 ? practices[state] : null;
 
   return (
-    <div className="w-full">
-      <p className="font-heading text-sm tracking-[0.04em] text-secondary text-center">
-        The anatomy of our services
-      </p>
+    <div className="w-full lg:h-full flex flex-col lg:relative">
       <div
-        className="relative w-full aspect-[6/5] max-h-[540px]"
+        className="absolute -top-10 -right-[38%] w-[112%] aspect-square opacity-[0.55] sm:-right-[25%] sm:w-[80%] lg:opacity-100 lg:relative lg:top-auto lg:right-auto lg:w-full lg:aspect-auto lg:flex-1 lg:min-h-0"
         onMouseEnter={onEnterVisual}
         onMouseLeave={onLeaveVisual}
       >
@@ -643,7 +722,7 @@ export function HeroVisual() {
           role="img"
           aria-label="Interactive 3D brain. Different regions light up for research and strategy, AI solutions, and AI visibility."
         />
-        <div className="pointer-events-none absolute inset-0">
+        <div ref={labelsWrapRef} className="pointer-events-none absolute inset-0 hidden lg:block">
           {practices.map((pr, i) => {
             const on = i === state || state === 3;
             const open = i === state;
@@ -663,27 +742,27 @@ export function HeroVisual() {
                 <button
                   onClick={() => openService(i)}
                   onMouseEnter={() => pick(i)}
-                  className={`pointer-events-auto absolute text-left rounded-lg border bg-white/90 backdrop-blur-sm px-2.5 py-1.5 shadow-sm whitespace-nowrap transition-colors ${
+                  className={`pointer-events-auto absolute text-left rounded-lg border bg-white/90 backdrop-blur-sm px-3 py-2 shadow-sm whitespace-nowrap transition-colors ${
                     open ? "border-accent/50" : "border-border hover:border-secondary/50"
                   }`}
                 >
-                  <span className={`block text-xs font-semibold ${on ? "text-accent" : "text-foreground"}`}>
+                  <span className={`block text-sm md:text-[15px] font-semibold ${on ? "text-accent" : "text-foreground"}`}>
                     {pr.titleBefore}
                     {pr.titleAccent}
                     {pr.titleAfter}
                   </span>
                   {open ? (
-                    <ul className="mt-1 space-y-0.5">
+                    <ul className="mt-1.5 space-y-1">
                       {pr.included.map((item, k) => (
                         <li
                           key={item.name}
-                          className="hero-chip text-[11px] text-secondary"
+                          className="hero-chip text-[13px] text-secondary"
                           style={{ animationDelay: `${k * 70}ms` }}
                         >
                           {item.name}
                         </li>
                       ))}
-                      <li className="pt-0.5 text-[11px] font-medium text-accent">See details →</li>
+                      <li className="pt-0.5 text-[13px] font-medium text-accent">See details →</li>
                     </ul>
                   ) : null}
                 </button>
@@ -692,16 +771,17 @@ export function HeroVisual() {
           })}
         </div>
       </div>
-      <div className="mt-3 min-h-[7rem]" aria-live="polite">
+      <div ref={panelRef} className="mt-3 min-h-[7rem] relative z-10 lg:absolute lg:bottom-8 lg:right-[max(2rem,calc(50vw-600px+2rem))] lg:w-[440px]" aria-live="polite">
+        <p className="font-heading text-sm text-secondary mb-1.5">The anatomy of our services</p>
         <p className="text-xs font-semibold tracking-[0.12em] uppercase text-accent">
           {p ? `${p.titleBefore}${p.titleAccent}${p.titleAfter}` : TOGETHER.eyebrow}
         </p>
         <p className="font-heading text-lg leading-snug text-foreground mt-2">{p ? p.hook : TOGETHER.text}</p>
 
-        <div className="mt-3 flex items-center gap-4">
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
           <Link
             href={p ? `/services#${p.id}` : "/services"}
-            className="text-sm font-medium hover:text-accent transition-colors"
+            className="whitespace-nowrap text-sm font-medium hover:text-accent transition-colors"
           >
             Learn more →
           </Link>

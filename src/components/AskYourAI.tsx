@@ -300,7 +300,7 @@ export function AskYourAI({
     variant === "primary"
       ? "inline-flex items-center justify-center bg-foreground text-white px-8 py-3.5 text-sm font-medium tracking-[0.02em] rounded hover:bg-accent transition-colors duration-200"
       : variant === "link"
-        ? "inline-flex items-center gap-1 text-sm font-medium hover:text-accent transition-colors"
+        ? "inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium hover:text-accent transition-colors"
         : "inline-flex items-center justify-center px-8 py-3.5 text-sm font-medium tracking-[0.02em] rounded border border-foreground hover:bg-foreground hover:text-white transition-colors duration-200";
 
   return (

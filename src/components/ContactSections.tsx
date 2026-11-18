@@ -11,7 +11,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const TOPICS: Record<AgentReason, string> = {
   research: "Research & Strategy Consulting",
   ai: "AI Solutions Consulting",
-  visibility: "AI Visibility (AEO)",
+  visibility: "AI Narrative & Visibility",
   general: "Not sure yet",
 };
 
