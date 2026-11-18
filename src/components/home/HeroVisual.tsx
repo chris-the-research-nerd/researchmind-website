@@ -521,6 +521,7 @@ export function HeroVisual() {
       const clock = new THREE.Clock();
       const section = mount.closest("[data-hero-scroll]") as HTMLElement | null;
       let reveal = 1;
+      const heroText = document.querySelector("[data-hero-text]") as HTMLElement | null;
       const loop = () => {
         const dt = Math.min(clock.getDelta(), 0.05);
         const t = clock.elapsedTime;
@@ -531,20 +532,38 @@ export function HeroVisual() {
         // full screen behind the headline, 1 = brain on the right with its
         // labels and the panel showing.
         let target = 1;
-        if (section && window.innerWidth >= 1024) {
+        if (section) {
           const travel = section.offsetHeight - window.innerHeight;
           target = travel > 0 ? Math.min(1, Math.max(0, -section.getBoundingClientRect().top / (travel * 0.75))) : 1;
         }
         reveal = reduce ? target : reveal + (target - reveal) * Math.min(1, dt * 6);
         const ease = reveal * reveal * (3 - 2 * reveal);
-        if (window.innerWidth >= 1024) {
-          const halfW = camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.aspect;
+        const desktop = window.innerWidth >= 1024;
+        const tanV = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+        const halfH = camera.position.z * tanV;
+        const halfW = halfH * camera.aspect;
+        if (desktop) {
           brain.position.x = ease * Math.min(halfW * 0.42, 2.2);
           brain.position.y = ease * 0.1;
           brain.scale.setScalar(1.15 * (1 - 0.3 * ease));
+          mount.style.opacity = "1";
         } else {
-          brain.position.set(0, 0, 0);
-          brain.scale.setScalar(1.15);
+          // Phones: start faint, up and to the right behind the headline; end
+          // centred above the panel at full strength while the text moves away.
+          brain.position.x = (1 - ease) * halfW * 0.45;
+          brain.position.y = (1 - ease) * halfH * 0.3 + ease * halfH * 0.18;
+          brain.scale.setScalar(1.15 * (0.95 + 0.1 * ease));
+          mount.style.opacity = String(0.5 + 0.5 * ease);
+        }
+        if (heroText) {
+          if (desktop) {
+            heroText.style.transform = "";
+            heroText.style.opacity = "";
+          } else {
+            heroText.style.transform = `translateY(${-ease * 35}%)`;
+            heroText.style.opacity = String(Math.max(0, 1 - ease * 1.6));
+          }
+          heroText.style.visibility = !desktop && ease > 0.65 ? "hidden" : "";
         }
         const lw = labelsWrapRef.current;
         if (lw) {
@@ -554,7 +573,7 @@ export function HeroVisual() {
         }
         const pn = panelRef.current;
         if (pn) {
-          const o = window.innerWidth >= 1024 ? Math.max(0, (ease - 0.6) / 0.4) : 1;
+          const o = Math.max(0, (ease - 0.6) / 0.4);
           pn.style.opacity = String(o);
           pn.style.pointerEvents = o < 0.5 ? "none" : "";
         }
@@ -710,9 +729,9 @@ export function HeroVisual() {
   const p = state < 3 ? practices[state] : null;
 
   return (
-    <div className="w-full lg:h-full flex flex-col lg:relative">
+    <div className="relative w-full h-full flex flex-col">
       <div
-        className="absolute -top-10 -right-[38%] w-[112%] aspect-square opacity-[0.55] sm:-right-[25%] sm:w-[80%] lg:opacity-100 lg:relative lg:top-auto lg:right-auto lg:w-full lg:aspect-auto lg:flex-1 lg:min-h-0"
+        className="absolute inset-0 lg:relative lg:inset-auto lg:flex-1 lg:min-h-0"
         onMouseEnter={onEnterVisual}
         onMouseLeave={onLeaveVisual}
       >
@@ -771,7 +790,7 @@ export function HeroVisual() {
           })}
         </div>
       </div>
-      <div ref={panelRef} className="mt-3 min-h-[7rem] relative z-10 lg:absolute lg:bottom-8 lg:right-[max(2rem,calc(50vw-600px+2rem))] lg:w-[440px]" aria-live="polite">
+      <div ref={panelRef} className="absolute z-10 bottom-6 left-6 right-6 sm:left-8 sm:right-8 lg:left-auto lg:bottom-8 lg:right-[max(2rem,calc(50vw-600px+2rem))] lg:w-[440px]" aria-live="polite">
         <p className="font-heading text-sm text-secondary mb-1.5">The anatomy of our services</p>
         <p className="text-xs font-semibold tracking-[0.12em] uppercase text-accent">
           {p ? `${p.titleBefore}${p.titleAccent}${p.titleAfter}` : TOGETHER.eyebrow}

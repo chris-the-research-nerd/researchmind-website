@@ -10,16 +10,16 @@ export function Hero() {
     // the screen behind the headline (Noomo-style); scrolling moves it to the
     // right and fades in its labels and the "how it fits together" panel
     // (driven from HeroVisual via scroll progress). Phones: unchanged layout.
-    <section data-hero-scroll className="relative lg:h-[210vh]">
-      <div className="relative overflow-hidden pt-20 pb-12 md:pt-28 md:pb-16 lg:p-0 lg:sticky lg:top-[81px] lg:h-[calc(100vh-81px)]">
-        <Container className="relative lg:h-full">
-          <div className="relative lg:h-full lg:flex lg:items-center">
+    <section data-hero-scroll className="relative h-[230svh] lg:h-[210vh]">
+      <div className="overflow-hidden sticky top-[65px] h-[calc(100svh-65px)] md:top-[81px] md:h-[calc(100svh-81px)] lg:h-[calc(100vh-81px)]">
+        <Container className="relative h-full">
+          <div className="relative h-full flex items-center">
             <div
               data-hero-text
-              className="relative z-10 lg:w-[80%] lg:pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto"
+              className="relative z-10 w-full lg:w-[80%] pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto"
             >
               <FadeIn>
-                <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[3.6rem] xl:text-[4rem] font-medium tracking-tight leading-[1.04]">
+                <h1 className="font-heading text-[2.15rem] sm:text-5xl md:text-6xl lg:text-[3.6rem] xl:text-[4rem] font-medium tracking-tight leading-[1.04]">
                   {hero.lines.map((line) => (
                     <span key={line} className="block">
                       {line}
@@ -43,7 +43,7 @@ export function Hero() {
             </div>
             {/* Full-width stage on desktop. No FadeIn: its transform would trap
                 the phone layout's absolutely positioned brain. */}
-            <div className="mt-10 lg:mt-0 lg:absolute lg:inset-y-0 lg:left-[calc(50%-50vw)] lg:w-screen z-0">
+            <div className="absolute inset-y-0 left-[calc(50%-50vw)] w-screen z-0">
               <HeroVisual />
             </div>
           </div>
