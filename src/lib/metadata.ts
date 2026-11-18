@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 
 export const siteMetadata: Metadata = {
   title:
-    "Research Mind | Research, strategy, and AI consulting",
+    "Research Mind | Research, AI consulting, and AI visibility",
   description:
-    "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+    "Research Mind helps businesses understand their customers, get real value from AI, and get recommended by ChatGPT, Gemini, and other AI assistants.",
   openGraph: {
     title:
-      "Research Mind | Research, strategy, and AI consulting",
+      "Research Mind | Research, AI consulting, and AI visibility",
     description:
-      "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+      "Research Mind helps businesses understand their customers, get real value from AI, and get recommended by ChatGPT, Gemini, and other AI assistants.",
     type: "website",
     locale: "en_US",
     siteName: "Research Mind",
@@ -17,9 +17,9 @@ export const siteMetadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Research Mind | Research, strategy, and AI consulting",
+      "Research Mind | Research, AI consulting, and AI visibility",
     description:
-      "Research Mind is a research, strategy, and AI consulting firm. We run customer research and strategy projects, help teams adopt AI, and help businesses show up in ChatGPT and other AI assistants.",
+      "Research Mind helps businesses understand their customers, get real value from AI, and get recommended by ChatGPT, Gemini, and other AI assistants.",
   },
   robots: {
     index: true,

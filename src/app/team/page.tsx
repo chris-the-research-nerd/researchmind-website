@@ -8,7 +8,7 @@ import { team, partners } from "@/content/team";
 export const metadata: Metadata = {
   title: "Our Team | Research Mind",
   description:
-    "Meet the Research Mind team. PhDs in neuroscience, decades of experience at companies like TikTok, Meta, Microsoft, and Red Bull.",
+    "Meet the Research Mind team and partners. PhD researchers with experience at TikTok, Meta, Microsoft, and Red Bull, plus partners in AI consulting and AI visibility.",
 };
 
 

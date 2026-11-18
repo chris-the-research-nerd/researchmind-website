@@ -11,7 +11,7 @@ import { AeoExample } from "@/components/AeoExample";
 export const metadata: Metadata = {
   title: "Services | Research Mind",
   description:
-    "Research and strategy consulting, AI solutions consulting, and AI visibility (AEO) from Research Mind.",
+    "Customer research and strategy, AI solutions consulting, and AI visibility (AEO and GEO). What each service includes and when it helps.",
 };
 
 export default function ServicesPage() {

@@ -6,7 +6,7 @@ import { ContactSections } from "@/components/ContactSections";
 
 export const metadata: Metadata = {
   title: "Contact | Research Mind",
-  description: "Get in touch with Research Mind.",
+  description: "Talk to Research Mind about customer research, AI solutions, or AI visibility. Send a message, email us, or have your AI assistant reach out.",
 };
 
 export default function ContactPage() {
